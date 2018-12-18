@@ -24,11 +24,13 @@ let playerOne = [];
 let playerTwo = [];
 let cardsInPlay = [];
 
+
 // Card Dealer
 while(playerOne.length<3 || playerTwo.length<3) {
 	playerOne.push(pokemonCards[Math.floor(Math.random() * pokemonCards.length)])
 	playerTwo.push(pokemonCards[Math.floor(Math.random() * pokemonCards.length)])
 };
+
 
 
 // Player 1 Card Pick
@@ -42,14 +44,13 @@ cardsInPlay.push(Math.max(...playerOneDmg))
 
 
 //Player 2 Card Pick
-
 if(true) {
 	cardsInPlay.push(playerTwo[Math.floor(Math.random() * playerTwo.length)]);
 };	
 
 
-//Round Winner
 
+//Round Winner
 if(cardsInPlay[0]>cardsInPlay[1].damage) {
 	console.log("Player One Won this Turn!") 
 }	else console.log("Player Two Won this Turn!")  
