@@ -19,23 +19,15 @@ let deck = [
   { name: "Weedle",  damage: 40 }
 ]
 
-// let playerOne = {
-// 	hand: [
-// 		{card1},
-// 		{card2},
-// 		{card3}
-// 			],
-// 	points: 0,
-// }
+let playerOne = {
+	hand: [],
+	points: 0,
+}
 
-// let playerTwo = {
-//   hand: [
-//     {card1},
-//     {card2},
-//     {card3}
-//       ],
-//   points: 0,
-// }
+let playerTwo = {
+  hand: [],
+  points: 0,
+}
 
 // let arena = [
 // 	{playerOne_card},
@@ -45,7 +37,24 @@ let deck = [
 // playerOne.hand.push(three random cards)
 // playerTwo.hand.push(three random cards)
 
-console.log(deck.splice(Math.floor(Math.random() * deck.length), 1));
+// Remove random card from deck array and push it into playerOne.hand array
+
+
+for (let i = 0; i <= 2; i++) {
+  playerOne.hand.push(deck.splice(Math.floor(Math.random() * deck.length), 1));
+}
+
+for (let i = 0; i <= 2; i++) {
+  playerTwo.hand.push(deck.splice(Math.floor(Math.random() * deck.length), 1));
+}
+
+console.log(playerOne.hand)
+console.log(playerTwo.hand)
+console.log(deck)
+
+
+
+
 
 
 
