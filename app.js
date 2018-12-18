@@ -81,7 +81,10 @@ class Player{
 		//console.log("sdfsdf")
 		//console.log(this.cards);
 		//return this.cards;
-		return this.cards;
+		if (this.cards.length === 0)
+			return "Empty"
+		else
+			return this.cards;
 	}
 }
 
@@ -105,9 +108,9 @@ class globalFunctions extends Player{
 	{
 		return ++this.round;
 	}
+
 	selectCardsPlayer1() 
 	{
-		
 		//player1 one takes highest card
 		let maxCard = 0;
 		let indexCard = 0;
@@ -127,11 +130,11 @@ class globalFunctions extends Player{
 		
 		player1.showCard = player1.cards.splice(indexCard,1);  //got to remove the card from the player's deck!!!
 		let justObj = player1.showCard[0];
-		player2.showCard = justObj;
+		player1.showCard = justObj;
+		
 		return justObj;
-		//console.log(player1.showHand(1));
-		//console.log(player2.showHand(1));
 	}
+
 	selectCardsPlayer2() 
 	{
 		//player2 selects a random card
@@ -144,7 +147,32 @@ class globalFunctions extends Player{
 		let arrObj = player2.cards.splice(randCard,1);
 		let justObj = arrObj[0];
 		player2.showCard = justObj;
+
 		return justObj;
+	}
+
+	comparePlayerCards()
+	{
+	
+
+		if(player1.showCard.damage > player2.showCard.damage)
+		{
+			//player 1 wins the hand.  Increment his win total
+			++player1.points;
+			console.log("Player 111111 wins!!!!")
+		}
+		else if (player1.showCard.damage < player2.showCard.damage)
+		{
+			++player2.points;
+			console.log("Player 2222222 wins!!!!")
+		}
+		else
+		{
+			//increment no one since it was a tie
+			console.log("####Tie####")
+		}
+
+
 	}
 }
 
@@ -184,7 +212,7 @@ for (let i=0; i <=2; i++)
 	assignCards(player2);
 }
 
-console.log("-------------------------------------------------------");
+//console.log("-------------------------------------------------------");
 //console.log(player1.currentPoints());
 
 
@@ -199,39 +227,41 @@ console.log(`Player 2 current points = ${player2.currentPoints()}`);
 //globalFunc.incrementRound();
 
 
-console.log(`-----Round ${globalFunc.showRound()}-----------Selecting Card 1---------------------`);
+console.log(`Round ${globalFunc.showRound()} -----------Selecting Card 1---------------------`);
 //console.log(globalFunc.showRound());
 
 let player1Card = globalFunc.selectCardsPlayer1();
 let player2Card = globalFunc.selectCardsPlayer2();
-
 console.log(player1Card)
 console.log(player2Card)
+globalFunc.comparePlayerCards();
 
-console.log(`-----Round ${globalFunc.showRound()}-----------Show Hands 1------------------------`);
+console.log(`Round ${globalFunc.showRound()} -----------Show Hands 1------------------------`);
 console.log(player1.showHand());
 console.log(player2.showHand());
 
 
-console.log(`-----Round ${globalFunc.showRound()}-----------Selecting Card 2---------------------`);
+console.log(`Round ${globalFunc.showRound()} -----------Selecting Card 2---------------------`);
 //console.log(globalFunc.showRound());
 player1Card = globalFunc.selectCardsPlayer1();
 player2Card = globalFunc.selectCardsPlayer2();
 console.log(player1Card)
 console.log(player2Card)
+globalFunc.comparePlayerCards();
 
-console.log(`-----Round ${globalFunc.showRound()}-----------Show Hands 2------------------------`);
+console.log(`Round ${globalFunc.showRound()} -----------Show Hands 2------------------------`);
 console.log(player1.showHand());
 console.log(player2.showHand());
 
-console.log(`-----Round ${globalFunc.showRound()} -----------Selecting Card 3  ---------------------`);
+console.log(`Round ${globalFunc.showRound()} -----------Selecting Card 3---------------------`);
 //console.log(globalFunc.showRound());
 player1Card = globalFunc.selectCardsPlayer1();
 player2Card = globalFunc.selectCardsPlayer2();
 console.log(player1Card)
 console.log(player2Card)
+globalFunc.comparePlayerCards();
 
-console.log(`-----Round ${globalFunc.showRound()}-----------Show Hands 3------------------------`);
+console.log(`Round ${globalFunc.showRound()} -----------Show Hands 3------------------------`);
 console.log(player1.showHand());
 console.log(player2.showHand());
 
