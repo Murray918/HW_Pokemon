@@ -20,6 +20,7 @@ let pokemonCards = [
 ];
 
 let playerOne = [];
+let playerOneDmg = [];
 let playerTwo = [];
 let cardsInPlay = [];
 
@@ -31,23 +32,32 @@ while(playerOne.length<3 || playerTwo.length<3) {
 
 
 // Player 1 Card Pick
+
 for(let i=0; i<playerOne.length; i++) {
-	cardsInPlay.push(Math.max(playerOne[i].damage))
-	
+	playerOneDmg.push(playerOne[i].damage)
 };
+cardsInPlay.push(Math.max(...playerOneDmg))
+
+
 
 //Player 2 Card Pick
+
 if(true) {
 	cardsInPlay.push(playerTwo[Math.floor(Math.random() * playerTwo.length)]);
 };	
 
+
 //Round Winner
-if(cardsInPlay[0].damage>cardsInPlay[1].damage) {
+
+if(cardsInPlay[0]>cardsInPlay[1].damage) {
 	console.log("Player One Won this Turn!") 
 }	else console.log("Player Two Won this Turn!")  
 
+
+//console.log(typeof playerOneDmg[0]==="number")
+//SAME AS:
+//console.log(Math.max(playerOneDmg[0],playerOneDmg[1],playerOneDmg[2]))
 console.log(cardsInPlay)
-console.log()
 
 
 
