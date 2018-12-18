@@ -73,7 +73,7 @@ class Player{
 	{
 		//console.log("Add Cards");
 		this.cards.push(cardsObject);
-		console.log(this.cards);
+		//console.log(this.cards);
 	}
 	
 	showHand()
@@ -122,38 +122,29 @@ class globalFunctions extends Player{
 			return index;
 		});
 
-		//got to remove the card from the player's deck!!!-------------------------------------------------------------------------------
-
-		console.log(maxCard);
-		console.log(indexCard);
+		//console.log(maxCard);
+		//console.log(indexCard);
 		
-		player1.showHand = player1.cards[indexCard];
-		return player1.cards[indexCard];
+		player1.showCard = player1.cards.splice(indexCard,1);  //got to remove the card from the player's deck!!!
+		let justObj = player1.showCard[0];
+		player2.showCard = justObj;
+		return justObj;
 		//console.log(player1.showHand(1));
 		//console.log(player2.showHand(1));
 	}
 	selectCardsPlayer2() 
 	{
-		
 		//player2 selects a random card
 		let cardsInDeck = player2.cards.length;  
-		console.log(cardsInDeck);
+		//console.log(cardsInDeck);
 
-		//select a random number between 0 and 17
+		//select a random number between 0 and Max Cards in Deck
 		randCard = Math.floor(Math.random() * cardsInDeck);   
-		console.log(randCard);
+		//console.log(randCard);
 		let arrObj = player2.cards.splice(randCard,1);
-		let moo = arrObj[0];
-		player2.showHand = moo;
-		return moo;
-
-
-		//got to remove the card from the player's deck!!!-------------------------------------------------------------------------------
-		//playerObj.addCards(moo);
-
-		//console.log(maxCard);
-		//console.log(player1.showHand(1));
-		//console.log(player2.showHand(1));
+		let justObj = arrObj[0];
+		player2.showCard = justObj;
+		return justObj;
 	}
 }
 
@@ -163,11 +154,11 @@ function assignCards(playerObj)
 {
 	//get the current length of the array.  Remember, the array can shrink as cards are removed!!!
 	let cardsInDeck = pokemonArray.length;  
-	console.log(cardsInDeck);
+	//console.log(cardsInDeck);
 
-	//select a random number between 0 and 17
+	//select a random number between 0 and Max Cards in deck
 	randCard = Math.floor(Math.random() * cardsInDeck);   
-	console.log(randCard);
+	//console.log(randCard);
 
 	//need to remove the selected object from the array and return it
 	//must return just the object.  Do not return an array of objects.
@@ -199,18 +190,59 @@ console.log("-------------------------------------------------------");
 
 
 
-console.log(player1.showHand());
-console.log(player2.showHand());
+//console.log(player1.showHand());
+//console.log(player2.showHand());
 console.log(`Player 1 current points = ${player1.currentPoints()}`);
 console.log(`Player 2 current points = ${player2.currentPoints()}`);
 
-console.log(globalFunc.showRound());
-globalFunc.incrementRound();
-console.log(globalFunc.showRound());
+//console.log(globalFunc.showRound());
+//globalFunc.incrementRound();
+
+
+console.log(`-----Round ${globalFunc.showRound()}-----------Selecting Card 1---------------------`);
+//console.log(globalFunc.showRound());
+
 let player1Card = globalFunc.selectCardsPlayer1();
 let player2Card = globalFunc.selectCardsPlayer2();
+
 console.log(player1Card)
 console.log(player2Card)
+
+console.log(`-----Round ${globalFunc.showRound()}-----------Show Hands 1------------------------`);
+console.log(player1.showHand());
+console.log(player2.showHand());
+
+
+console.log(`-----Round ${globalFunc.showRound()}-----------Selecting Card 2---------------------`);
+//console.log(globalFunc.showRound());
+player1Card = globalFunc.selectCardsPlayer1();
+player2Card = globalFunc.selectCardsPlayer2();
+console.log(player1Card)
+console.log(player2Card)
+
+console.log(`-----Round ${globalFunc.showRound()}-----------Show Hands 2------------------------`);
+console.log(player1.showHand());
+console.log(player2.showHand());
+
+console.log(`-----Round ${globalFunc.showRound()} -----------Selecting Card 3  ---------------------`);
+//console.log(globalFunc.showRound());
+player1Card = globalFunc.selectCardsPlayer1();
+player2Card = globalFunc.selectCardsPlayer2();
+console.log(player1Card)
+console.log(player2Card)
+
+console.log(`-----Round ${globalFunc.showRound()}-----------Show Hands 3------------------------`);
+console.log(player1.showHand());
+console.log(player2.showHand());
+
+
+
+
+
+
+
+
+
 
 //console.log(card);
 //player1.addCards(card);
