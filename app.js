@@ -21,14 +21,28 @@ let pokemonCards = [
 
 let playerOne = [];
 let playerTwo = [];
+let cardsInPlay = [];
 
+// Card Dealer
 while(playerOne.length<3 || playerTwo.length<3) {
 	playerOne.push(pokemonCards[Math.floor(Math.random() * pokemonCards.length)])
 	playerTwo.push(pokemonCards[Math.floor(Math.random() * pokemonCards.length)])
 };
 
-console.log(playerOne)
-console.log(playerTwo)
+
+// Player 1 Card Pick
+for(let i=0; i<playerOne.length; i++) {
+	cardsInPlay.push(Math.max(playerOne[i].damage))
+	
+};
+
+//Player 2 Card Pick
+if(true) {
+	cardsInPlay.push(playerTwo[Math.floor(Math.random() * playerTwo.length)]);
+};	
+
+console.log(cardsInPlay)
+console.log()
 
 
 
