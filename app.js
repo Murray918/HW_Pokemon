@@ -19,8 +19,8 @@ let pokemonCards = [
   { name: "Weedle",  damage: 40 }
 ];
 
+
 let playerOne = [];
-let playerOneDmg = [];
 let playerTwo = [];
 let cardsInPlay = [];
 
@@ -32,6 +32,7 @@ while(playerOne.length<3 || playerTwo.length<3) {
 
 
 // Player 1 Card Pick
+let playerOneDmg = [];
 
 for(let i=0; i<playerOne.length; i++) {
 	playerOneDmg.push(playerOne[i].damage)
@@ -54,9 +55,7 @@ if(cardsInPlay[0]>cardsInPlay[1].damage) {
 }	else console.log("Player Two Won this Turn!")  
 
 
-//console.log(typeof playerOneDmg[0]==="number")
-//SAME AS:
-//console.log(Math.max(playerOneDmg[0],playerOneDmg[1],playerOneDmg[2]))
+
 console.log(cardsInPlay)
 
 
