@@ -19,23 +19,33 @@ let deck = [
   { name: "Weedle",  damage: 40 }
 ]
 
-let player = {
-	hand: [
-		{card1},
-		{card2},
-		{card3}
-			],
-	points: 0
-}
+// let playerOne = {
+// 	hand: [
+// 		{card1},
+// 		{card2},
+// 		{card3}
+// 			],
+// 	points: 0,
+// }
 
-let arena = [
-	{playerOne.card},
-	{playerTwo.card}
-]
+// let playerTwo = {
+//   hand: [
+//     {card1},
+//     {card2},
+//     {card3}
+//       ],
+//   points: 0,
+// }
 
-playerOne.hand.push(three random cards)
-playerTwo.hand.push(three random cards)
+// let arena = [
+// 	{playerOne_card},
+// 	{playerTwo_card}
+// ]
 
-Math.random()*
+// playerOne.hand.push(three random cards)
+// playerTwo.hand.push(three random cards)
+
+console.log(deck.splice(Math.floor(Math.random() * deck.length), 1));
+
 
 
