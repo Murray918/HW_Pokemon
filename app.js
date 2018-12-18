@@ -1,5 +1,4 @@
-
-[
+let pokemonCards = [
   { name: "Bulbasaur", damage: 60 }, 
   { name: "Caterpie", damage: 40 }, 
   { name: "Charmander", damage: 60 }, 
@@ -18,4 +17,21 @@
   { name: "Squirtle", damage: 60 }, 
   { name: "Vulpix", damage: 50 }, 
   { name: "Weedle",  damage: 40 }
-]
+];
+
+let playerOne = [];
+let playerTwo = [];
+
+while(playerOne.length<3 || playerTwo.length<3) {
+	playerOne.push(pokemonCards[Math.floor(Math.random() * pokemonCards.length)])
+	playerTwo.push(pokemonCards[Math.floor(Math.random() * pokemonCards.length)])
+};
+
+console.log(playerOne)
+console.log(playerTwo)
+
+
+
+
+
+
