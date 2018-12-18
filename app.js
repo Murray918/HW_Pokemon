@@ -29,22 +29,22 @@ Per turn:
 */
 
 const pokemonArray = [
-  { name: "Bulbasaur", damage: 60 }, 
+  { name: "Bulbasaur", damage: 60 }, //0
   { name: "Caterpie", damage: 40 }, 
   { name: "Charmander", damage: 60 }, 
   { name: "Clefairy", damage: 50 }, 
   { name: "Jigglypuff", damage: 60 }, 
-  { name: "Mankey", damage: 30 }, 
+  { name: "Mankey", damage: 30 },    //5
   { name: "Meowth", damage: 60 }, 
   { name: "Nidoran - female", damage: 60 }, 
   { name: "Nidoran - male", damage: 50 }, 
   { name: "Oddish", damage: 40 }, 
-  { name: "Pidgey", damage: 50 }, 
+  { name: "Pidgey", damage: 50 },    //10
   { name: "Pikachu", damage: 50 }, 
   { name: "Poliwag", damage: 50 }, 
   { name: "Psyduck", damage: 60 }, 
   { name: "Rattata", damage: 30 }, 
-  { name: "Squirtle", damage: 60 }, 
+  { name: "Squirtle", damage: 60 },   //15
   { name: "Vulpix", damage: 50 }, 
   { name: "Weedle",  damage: 40 }
 ]
@@ -89,12 +89,23 @@ class global extends Player{
 	}
 }
 
-
-
 //assign random cards function
+function assignCards()
+{
+	//get the current length of the array.  Remember, the array can shrink as cards are removed!!!
+	let cardsInDeck = pokemonArray.length;  
+	console.log(cardsInDeck);
 
+	//select a random number between 0 and 17
+	randCard = Math.floor(Math.random() * cardsInDeck);   
+	console.log(randCard);
 
+	//need to remove the selected object from the array and return it
+	return pokemonArray.splice(randCard,1);
+	
+}
 
-
+let card = assignCards();
+console.log(card);
 
 
