@@ -49,17 +49,18 @@ if(true) {
 };	
 
 
+//Console Log Game
+console.log("Round 1!")
+console.log("Player One's Hand:", playerOne[0].name, playerOne[1].name, playerOne[2].name)
+console.log("Player Two's Hand:", playerTwo[0].name, playerTwo[1].name, playerTwo[2].name)
+console.log("Player One picked:", cardsInPlay[0])
+console.log("Player Two picked:", cardsInPlay[1].name+"!","Damage:"+cardsInPlay[1].damage)
+
 
 //Round Winner
 if(cardsInPlay[0]>cardsInPlay[1].damage) {
 	console.log("Player One Won this Turn!") 
-}	else console.log("Player Two Won this Turn!")  
-
-
-
-console.log(cardsInPlay)
-
-
+}	else console.log("Player Two Won this Turn!")
 
 
 
