@@ -41,6 +41,11 @@ if(true) {
 	cardsInPlay.push(playerTwo[Math.floor(Math.random() * playerTwo.length)]);
 };	
 
+//Round Winner
+if(cardsInPlay[0].damage>cardsInPlay[1].damage) {
+	console.log("Player One Won this Turn!") 
+}	else console.log("Player Two Won this Turn!")  
+
 console.log(cardsInPlay)
 console.log()
 
