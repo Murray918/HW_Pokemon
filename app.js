@@ -54,43 +54,38 @@ const pokemonArray = [
 class Player{
 	constructor(name)
 	{
-		this.name = name;
-		this.cards = cards;
-		this.points = playerPoints;
+		this.name = name;  //store the name of the player
+		this.cards = [];   //new player has an empty hand of cards.
+		this.points = 0;   //new player should start with 0 points
 		//this.cat = {dog: "dsfdsf", goat: "sdfdsf"};
 		//this.moose = [1,2,3,4];
 	}
-
-	points()
+	
+	currentPoints(cpoints)
 	{
-		//console.log(this.States + " " + this.moose[1] + " " + this.cat.dog);
+		//return this.points;
+		//console.log("Points");
+		return this.points;
 	}
-	hand() 
+	
+	addCards(cardsObject)
 	{
-
+		//console.log("Add Cards");
+		this.cards.push(cardsObject);
+		console.log(this.cards);
 	}
-}
-
-class global extends Player{
-	constructor(name,player1,player2)
+	
+	showHand(hand)
 	{
-		super(name)
-		//this.cat = {dog: "dsfdsf", goat: "sdfdsf"};
-		//this.moose = [1,2,3,4];
-	}
-
-	points()
-	{
-		//console.log(this.States + " " + this.moose[1] + " " + this.cat.dog);
-	}
-	hand() 
-	{
-
+		//console.log("sdfsdf")
+		//console.log(this.cards);
+		//return this.cards;
+		return this.cards;
 	}
 }
 
 //assign random cards function
-function assignCards()
+function assignCards(playerObj)
 {
 	//get the current length of the array.  Remember, the array can shrink as cards are removed!!!
 	let cardsInDeck = pokemonArray.length;  
@@ -101,11 +96,71 @@ function assignCards()
 	console.log(randCard);
 
 	//need to remove the selected object from the array and return it
-	return pokemonArray.splice(randCard,1);
+	//must return just the object.  Do not return an array of objects.
+	let arrObj = pokemonArray.splice(randCard,1);
+	let moo = arrObj[0];
+	playerObj.addCards(moo);
+	//playerObj.addCards(moo);
+	return arrObj[0];
 	
 }
 
-let card = assignCards();
-console.log(card);
+
+//create the 2 players 
+let player1 = new Player("Chris");
+let player2 = new Player("Cassie");
+
+//assign them some cards
+for (let i=0; i <=2; i++)
+{
+	assignCards(player1);
+	assignCards(player2);
+}
+
+console.log("-------------------------------------------------------");
+console.log(player1.showHand(1));
+console.log(player2.showHand(1));
+console.log(`Player 1 current points = ${player1.currentPoints(1)}`);
+console.log(`Player 2 current points = ${player2.currentPoints(1)}`);
+
+//console.log(card);
+//player1.addCards(card);
+//console.log(`Assign Card from deck ${card}`);
 
 
+//player1.addCards(player1);
+
+//let card = assignCards();
+//console.log(card);
+
+//Create the players using a class
+
+//player1.showHand;
+//player1.currentPoints;
+
+
+
+
+
+
+
+/*
+class global extends Player{
+	constructor(name,player1,player2)
+	{
+		super(name)
+		//this.cat = {dog: "dsfdsf", goat: "sdfdsf"};
+		//this.moose = [1,2,3,4];
+	}
+
+	points()
+	{
+		
+		//console.log(this.States + " " + this.moose[1] + " " + this.cat.dog);
+	}
+	hand() 
+	{
+
+	}
+}
+*/
