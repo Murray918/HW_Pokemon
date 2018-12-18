@@ -18,7 +18,7 @@ let deck = [
   { name: "Vulpix", damage: 50 }, 
   { name: "Weedle",  damage: 40 }
 ]
-
+//create objects for each player
 let playerOne = {
 	hand: [],
 	points: 0,
@@ -29,28 +29,25 @@ let playerTwo = {
   points: 0,
 }
 
-// let arena = [
-// 	{playerOne_card},
-// 	{playerTwo_card}
-// ]
+//create arena to hold two players' card being played against each other
+let arena = []
 
-// playerOne.hand.push(three random cards)
-// playerTwo.hand.push(three random cards)
+//code for one round
 
 // Remove random card from deck array and push it into playerOne.hand array
-
-
 for (let i = 0; i <= 2; i++) {
   playerOne.hand.push(deck.splice(Math.floor(Math.random() * deck.length), 1));
 }
-
+// Remove random card from deck array and push it into playerTwo.hand array
 for (let i = 0; i <= 2; i++) {
   playerTwo.hand.push(deck.splice(Math.floor(Math.random() * deck.length), 1));
 }
 
-console.log(playerOne.hand)
-console.log(playerTwo.hand)
-console.log(deck)
+//code for one turn
+
+//play hands
+
+//compare cards
 
 
 
