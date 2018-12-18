@@ -57,11 +57,12 @@ class Player{
 		this.name = name;  //store the name of the player
 		this.cards = [];   //new player has an empty hand of cards.
 		this.points = 0;   //new player should start with 0 points
+		this.showCard = {};
 		//this.cat = {dog: "dsfdsf", goat: "sdfdsf"};
 		//this.moose = [1,2,3,4];
 	}
 	
-	currentPoints(cpoints)
+	currentPoints()
 	{
 		//return this.points;
 		//console.log("Points");
@@ -75,7 +76,7 @@ class Player{
 		console.log(this.cards);
 	}
 	
-	showHand(hand)
+	showHand()
 	{
 		//console.log("sdfsdf")
 		//console.log(this.cards);
@@ -83,6 +84,79 @@ class Player{
 		return this.cards;
 	}
 }
+
+class globalFunctions extends Player{
+	constructor(name,player1,player2)
+	{
+		super(name)
+		//this.player1 = new player1(name1);
+		//this.player2 = new player2(name2);
+		this.round = 1;   //start round = 1
+		//this.cat = {dog: "dsfdsf", goat: "sdfdsf"};
+		//this.moose = [1,2,3,4];
+	}
+
+	showRound()
+	{
+		return this.round;
+	}
+
+	incrementRound()
+	{
+		return ++this.round;
+	}
+	selectCardsPlayer1() 
+	{
+		
+		//player1 one takes highest card
+		let maxCard = 0;
+		let indexCard = 0;
+		let actorArray = player1.cards.filter(function (item, index) 
+		{
+		
+			if (item.damage >= maxCard)
+			{
+				maxCard = item.damage;
+				indexCard = index;
+			}
+			return index;
+		});
+
+		//got to remove the card from the player's deck!!!-------------------------------------------------------------------------------
+
+		console.log(maxCard);
+		console.log(indexCard);
+		
+		player1.showHand = player1.cards[indexCard];
+		return player1.cards[indexCard];
+		//console.log(player1.showHand(1));
+		//console.log(player2.showHand(1));
+	}
+	selectCardsPlayer2() 
+	{
+		
+		//player2 selects a random card
+		let cardsInDeck = player2.cards.length;  
+		console.log(cardsInDeck);
+
+		//select a random number between 0 and 17
+		randCard = Math.floor(Math.random() * cardsInDeck);   
+		console.log(randCard);
+		let arrObj = player2.cards.splice(randCard,1);
+		let moo = arrObj[0];
+		player2.showHand = moo;
+		return moo;
+
+
+		//got to remove the card from the player's deck!!!-------------------------------------------------------------------------------
+		//playerObj.addCards(moo);
+
+		//console.log(maxCard);
+		//console.log(player1.showHand(1));
+		//console.log(player2.showHand(1));
+	}
+}
+
 
 //assign random cards function
 function assignCards(playerObj)
@@ -110,6 +184,8 @@ function assignCards(playerObj)
 let player1 = new Player("Chris");
 let player2 = new Player("Cassie");
 
+let globalFunc = new globalFunctions("who",player1,player2);
+
 //assign them some cards
 for (let i=0; i <=2; i++)
 {
@@ -118,10 +194,23 @@ for (let i=0; i <=2; i++)
 }
 
 console.log("-------------------------------------------------------");
-console.log(player1.showHand(1));
-console.log(player2.showHand(1));
-console.log(`Player 1 current points = ${player1.currentPoints(1)}`);
-console.log(`Player 2 current points = ${player2.currentPoints(1)}`);
+//console.log(player1.currentPoints());
+
+
+
+
+console.log(player1.showHand());
+console.log(player2.showHand());
+console.log(`Player 1 current points = ${player1.currentPoints()}`);
+console.log(`Player 2 current points = ${player2.currentPoints()}`);
+
+console.log(globalFunc.showRound());
+globalFunc.incrementRound();
+console.log(globalFunc.showRound());
+let player1Card = globalFunc.selectCardsPlayer1();
+let player2Card = globalFunc.selectCardsPlayer2();
+console.log(player1Card)
+console.log(player2Card)
 
 //console.log(card);
 //player1.addCards(card);
@@ -145,22 +234,5 @@ console.log(`Player 2 current points = ${player2.currentPoints(1)}`);
 
 
 /*
-class global extends Player{
-	constructor(name,player1,player2)
-	{
-		super(name)
-		//this.cat = {dog: "dsfdsf", goat: "sdfdsf"};
-		//this.moose = [1,2,3,4];
-	}
 
-	points()
-	{
-		
-		//console.log(this.States + " " + this.moose[1] + " " + this.cat.dog);
-	}
-	hand() 
-	{
-
-	}
-}
 */
