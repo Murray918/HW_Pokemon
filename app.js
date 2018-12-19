@@ -33,18 +33,18 @@ let cardsInPlay = [];
 
 // Card Dealer
   if(playerOne.hand.length<3) {
-	playerOne = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
+	playerOne.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
 };
   if (playerTwo.hand.length<3){
-  playerTwo = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
+  playerTwo.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
 };
 
 
 // Player 1 Card Pick
 let playerOneDmg = [];
 
-for(let i=0; i<playerOne.length; i++) {
-	playerOneDmg.push(playerOne[i].damage)
+for(let i=0; i<playerOne.hand.length; i++) {
+	playerOneDmg.push(playerOne.hand[i].damage)
 };
 cardsInPlay.push(Math.max(...playerOneDmg))
 
@@ -52,7 +52,7 @@ cardsInPlay.push(Math.max(...playerOneDmg))
 
 //Player 2 Card Pick
 if(true) {
-	cardsInPlay.push(playerTwo[Math.floor(Math.random() * playerTwo.length)]);
+	cardsInPlay.push(playerTwo.hand[Math.floor(Math.random() * playerTwo.hand.length)]);
 };	
 
 
@@ -61,9 +61,10 @@ if(true) {
 
 
 //Console Log Game
+
 console.log("Round 1!")
-console.log("Player One's Hand:", playerOne[0].name, playerOne[1].name, playerOne[2].name)
-console.log("Player Two's Hand:", playerTwo[0].name, playerTwo[1].name, playerTwo[2].name)
+console.log("Player One's Hand:", playerOne.hand[0].name, playerOne.hand[1].name, playerOne.hand[2].name)
+console.log("Player Two's Hand:", playerTwo.hand[0].name, playerTwo.hand[1].name, playerTwo.hand[2].name)
 console.log("Player One picked:", "Damage:"+cardsInPlay[0])
 console.log("Player Two picked:", cardsInPlay[1].name+"!","Damage:"+cardsInPlay[1].damage)
 
@@ -72,9 +73,12 @@ console.log("Player Two picked:", cardsInPlay[1].name+"!","Damage:"+cardsInPlay[
 
 
 //Round Winner
-if(cardsInPlay[0]>cardsInPlay[1].damage) {
-	console.log("Player One Won this Turn!") 
-}	else console.log("Player Two Won this Turn!")
+if(cardsInPlay[0]===cardsInPlay[1].damage){
+  console.log("It's a Tie!")
+}else if(cardsInPlay[0]>cardsInPlay[1].damage) {
+  console.log("Player One Won this Turn!") 
+}
+else console.log("Player Two Won this Turn!")
 
 
-console.log(cardsInPlay[0])
+//console.log(playerOne.hand)
