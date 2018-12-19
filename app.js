@@ -103,7 +103,7 @@ if (playerOne.turnPoints > playerTwo.turnPoints) {
 } else if (playerTwo.turnPoints > playerOne.turnPoints) {
   console.log(`Round 1 Results: Player 2 is in the lead!`)
 } else {
-  console.log(`Round 1 Results: It's a close draw!`)
+  console.log(`Round 1 Results: It's a draw!`)
 }
 
 
