@@ -26,11 +26,12 @@ let playerOne = [];
 let playerTwo = [];
 
 // Card Dealer
-  if(pokemonCards.length>=12) {
-	playerOne = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length));
-  playerTwo = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length));
+  if(playerOne.length<3) {
+	playerOne = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
 };
-
+  if (playerTwo.length<3){
+  playerTwo = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
+};
 
 
 // Player 1 Card Pick
@@ -50,11 +51,15 @@ if(true) {
 
 
 //Console Log Game
+
 console.log("Round 1!")
 console.log("Player One's Hand:", playerOne[0].name, playerOne[1].name, playerOne[2].name)
 console.log("Player Two's Hand:", playerTwo[0].name, playerTwo[1].name, playerTwo[2].name)
 console.log("Player One picked:", "Damage:"+cardsInPlay[0])
 console.log("Player Two picked:", cardsInPlay[1].name+"!","Damage:"+cardsInPlay[1].damage)
+
+//console.log(playerOne)
+//console.log(playerTwo)
 
 
 //Round Winner
