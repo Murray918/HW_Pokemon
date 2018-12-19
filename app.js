@@ -94,7 +94,7 @@ class globalFunctions extends Player{
 		super(name)
 		//this.player1 = new player1(name1);
 		//this.player2 = new player2(name2);
-		this.round = 1;   //start round = 1
+		this.round = 1.1;   //start round = 1
 		//this.cat = {dog: "dsfdsf", goat: "sdfdsf"};
 		//this.moose = [1,2,3,4];
 	}
@@ -106,7 +106,11 @@ class globalFunctions extends Player{
 
 	incrementRound()
 	{
-		return ++this.round;
+		return this.round = this.round + 0.8;
+	}
+	incrementFight()
+	{
+		return this.round = this.round + 0.1;
 	}
 
 	selectCardsPlayer1() 
@@ -159,12 +163,12 @@ class globalFunctions extends Player{
 		{
 			//player 1 wins the hand.  Increment his win total
 			++player1.points;
-			console.log("Player 111111 wins!!!!")
+			console.log(`Player 1 ${player1.name} wins the battle!!!!`)
 		}
 		else if (player1.showCard.damage < player2.showCard.damage)
 		{
 			++player2.points;
-			console.log("Player 2222222 wins!!!!")
+			console.log(`Player 2 ${player1.name} wins the battle!!!!`)
 		}
 		else
 		{
@@ -205,68 +209,92 @@ let player2 = new Player("Cassie");
 
 let globalFunc = new globalFunctions("who",player1,player2);
 
-//assign them some cards
-for (let i=0; i <=2; i++)
-{
-	assignCards(player1);
-	assignCards(player2);
-}
+console.log(`########### ${player1.name} (Player 1) vs ${player2.name} (Player 2) #############`);
+do {
+	console.log(`^^^^^^^^Selecting Starting Cards Round ${globalFunc.showRound().toFixed(1)} ^^^^^^^^^^^^^^^^`);
+	//assign them some cards
+	for (let i=0; i <=2; i++)
+	{
+		assignCards(player1);
+		assignCards(player2);
+	}
 
-//console.log("-------------------------------------------------------");
-//console.log(player1.currentPoints());
-
-
-
-
-//console.log(player1.showHand());
-//console.log(player2.showHand());
-console.log(`Player 1 current points = ${player1.currentPoints()}`);
-console.log(`Player 2 current points = ${player2.currentPoints()}`);
-
-//console.log(globalFunc.showRound());
-//globalFunc.incrementRound();
-
-
-console.log(`Round ${globalFunc.showRound()} -----------Selecting Card 1---------------------`);
-//console.log(globalFunc.showRound());
-
-let player1Card = globalFunc.selectCardsPlayer1();
-let player2Card = globalFunc.selectCardsPlayer2();
-console.log(player1Card)
-console.log(player2Card)
-globalFunc.comparePlayerCards();
-
-console.log(`Round ${globalFunc.showRound()} -----------Show Hands 1------------------------`);
-console.log(player1.showHand());
-console.log(player2.showHand());
-
-
-console.log(`Round ${globalFunc.showRound()} -----------Selecting Card 2---------------------`);
-//console.log(globalFunc.showRound());
-player1Card = globalFunc.selectCardsPlayer1();
-player2Card = globalFunc.selectCardsPlayer2();
-console.log(player1Card)
-console.log(player2Card)
-globalFunc.comparePlayerCards();
-
-console.log(`Round ${globalFunc.showRound()} -----------Show Hands 2------------------------`);
-console.log(player1.showHand());
-console.log(player2.showHand());
-
-console.log(`Round ${globalFunc.showRound()} -----------Selecting Card 3---------------------`);
-//console.log(globalFunc.showRound());
-player1Card = globalFunc.selectCardsPlayer1();
-player2Card = globalFunc.selectCardsPlayer2();
-console.log(player1Card)
-console.log(player2Card)
-globalFunc.comparePlayerCards();
-
-console.log(`Round ${globalFunc.showRound()} -----------Show Hands 3------------------------`);
-console.log(player1.showHand());
-console.log(player2.showHand());
+	//console.log("-------------------------------------------------------");
+	//console.log(player1.currentPoints());
 
 
 
+
+	//console.log(player1.showHand());
+	//console.log(player2.showHand());
+	//console.log(`Player 1 current points = ${player1.currentPoints()}`);
+	//console.log(`Player 2 current points = ${player2.currentPoints()}`);
+
+	//console.log(globalFunc.showRound());
+	//globalFunc.incrementRound();
+
+	
+	
+
+	//console.log(globalFunc.showRound());
+	console.log(`******** Round ${globalFunc.showRound().toFixed(1)} *********** Round ${globalFunc.showRound().toFixed(1)} ************ Round ${globalFunc.showRound().toFixed(1)} *************`);
+	console.log(`------------------------Fight-------------------------`);
+	let player1Card = globalFunc.selectCardsPlayer1();
+	let player2Card = globalFunc.selectCardsPlayer2();
+	console.log(player1Card)
+	console.log("        vs        ")
+	console.log(player2Card)
+	console.log("")
+	globalFunc.comparePlayerCards();
+	console.log(`Player 1 (${player1.name}) current points = ${player1.currentPoints()}`);
+	console.log(`Player 2 (${player2.name}) current points = ${player2.currentPoints()}`);
+	console.log("")
+
+	console.log(`-----------------------Show Remaining Cards------------------------`);
+	console.log(player1.showHand());
+	console.log(player2.showHand());
+	console.log("")
+	globalFunc.incrementFight();
+
+	console.log(`******** Round ${globalFunc.showRound().toFixed(1)} *********** Round ${globalFunc.showRound().toFixed(1)} ************ Round ${globalFunc.showRound().toFixed(1)} *************`);
+	console.log(`------------------------Fight-------------------------`);
+	//console.log(globalFunc.showRound());
+	player1Card = globalFunc.selectCardsPlayer1();
+	player2Card = globalFunc.selectCardsPlayer2();
+	console.log(player1Card)
+	console.log("        vs        ")
+	console.log(player2Card)
+	console.log("")
+	globalFunc.comparePlayerCards();
+	console.log(`Player 1 (${player1.name}) current points = ${player1.currentPoints()}`);
+	console.log(`Player 2 (${player2.name}) current points = ${player2.currentPoints()}`);
+	console.log("")
+
+	console.log(`-----------------------Show Remaining Cards------------------------`);
+	console.log(player1.showHand());
+	console.log(player2.showHand());
+	console.log("")
+	globalFunc.incrementFight();
+
+	console.log(`******** Round ${globalFunc.showRound().toFixed(1)} *********** Round ${globalFunc.showRound().toFixed(1)} ************ Round ${globalFunc.showRound().toFixed(1)} *************`);
+	console.log(`-------------------------Fight--------------------------`);
+	player1Card = globalFunc.selectCardsPlayer1();
+	player2Card = globalFunc.selectCardsPlayer2();
+	console.log(player1Card)
+	console.log("        vs        ")
+	console.log(player2Card)
+	console.log("")
+	globalFunc.comparePlayerCards();
+	console.log(`Player 1 (${player1.name}) current points = ${player1.currentPoints()}`);
+	console.log(`Player 2 (${player2.name}) current points = ${player2.currentPoints()}`);
+	console.log("")
+
+	console.log(`-----------------------Show Remaining Cards------------------------`);
+	console.log(player1.showHand());
+	console.log(player2.showHand());
+	globalFunc.incrementRound();
+
+} while(pokemonArray.length >= 1)
 
 
 
