@@ -20,69 +20,90 @@ let deck = [
 ]
 //create objects for each player
 let playerOne = {
-	hand: [],
-	points: 0
+	name: "Ash",
+  hand: [],
+	turnPoints: 0,
+  roundsWon: 0
 }
 
 let playerTwo = {
+  name: "Gary",
   hand: [],
-  points: 0
+  turnPoints: 0,
+  roundsWon: 0
 }
 
 //create arena to hold two players' card being played against each other
 let arena = [];
 
 //code for one round
-console.log('Round 1 Start!');
+console.log(`Round 1 Start!`);
 // Remove random card from deck array and push it into playerOne.hand array
 for (let i = 0; i <= 2; i++) {
   playerOne.hand.push(deck.splice(Math.floor(Math.random() * deck.length), 1)[0]);
 }
-console.log(playerOne.hand)
-console.log(`Player One drew ${playerOne.hand[0].name}, ${playerOne.hand[1].name}, and ${playerOne.hand[2].name}!`);
+console.log(`Player One drew ${playerOne.hand[0].name}, ${playerOne.hand[1].name}, and ${playerOne.hand[2].name}.`);
 
 // Remove random card from deck array and push it into playerTwo.hand array
 for (let i = 0; i <= 2; i++) {
   playerTwo.hand.push(deck.splice(Math.floor(Math.random() * deck.length), 1)[0]);
 }
-console.log(`Player Two drew ${playerTwo.hand[0].name}, ${playerTwo.hand[1].name}, and ${playerTwo.hand[2].name}!`);
-//code for one turn
+console.log(`Player Two drew ${playerTwo.hand[0].name}, ${playerTwo.hand[1].name}, and ${playerTwo.hand[2].name}.`);
+
+// code for one turn
 
 // play hands
-// let highestCard= [];
-// if (playerOne.hand[0].damage >= playerOne.hand[1].damage) {
-//   if (playerOne.hand[0].damage >= playerOne.hand[2].damage) {
-//     highestCard = playerOne.hand[0]
-//   } else {
-//     highestCard = playerOne.hand[2]
-//   }
-// }
-// else if (playerOne.hand[0].damage < playerOne.hand[1].damage) {
-//   if (playerOne.hand[1].damage > playerOne.hand[2].damage) {
-//     highestCard = playerOne.hand[1]
-//   } else {
-//     highestCard = playerOne.hand[2]
-//   }
-// }
-// console.log(highestCard);
+
 // playerOne picks card
+let highestCard= [];
+if (playerOne.hand[0].damage >= playerOne.hand[1].damage) {
+  if (playerOne.hand[0].damage >= playerOne.hand[2].damage) {
+    highestCard = playerOne.hand[0]
+  } else {
+    highestCard = playerOne.hand[2]
+  }
+}
+else if (playerOne.hand[0].damage < playerOne.hand[1].damage) {
+  if (playerOne.hand[1].damage > playerOne.hand[2].damage) {
+    highestCard = playerOne.hand[1]
+  } else {
+    highestCard = playerOne.hand[2]
+  }
+}
+arena.push(highestCard);
+
 // playerOne.hand.sort
 // .sort(function compareFunction(a, b) {
 //   return a - b;
 // })
 
 
-//playerTwo picks card
-arena.push(playerTwo.hand.splice(Math.floor(Math.random() * playerTwo.hand.length), 1)[0]);
-console.log(arena)
-// console.log(playerTwo's card)
+// playerTwo picks card
+let randomCard = playerTwo.hand.splice(Math.floor(Math.random() * playerTwo.hand.length), 1)[0]
+arena.push(randomCard);
+
 // console.log(arena);
+console.log(`${arena[0].name} vs. ${arena[1].name}`)
 
-// console.log the round number
-// console.log the players hand
-// console.log the chosen card
-// console.log who won the turn
+//determine winner of turn
+if (arena[0].damage > arena[1].damage) {
+  console.log(`${arena[0].name} beat ${arena[1].name}. Player One wins!`)
+  playerOne.turnPoints ++
+} else if (arena[1].damage > arena[0].dmg) {
+  console.log(`${arena[1].name} beat ${arena[0].name}. Player Two wins!`)
+  playerTwo.turnPoints ++
+} else {
+  console.log(`It's a...DRAW!`)
+}
+
+
 // console.log who won the round
-
+if (playerOne.turnPoints > playerTwo.turnPoints) {
+  console.log(`Round 1 Results: Player 1 is in the lead!`)
+} else if (playerTwo.turnPoints > playerOne.turnPoints) {
+  console.log(`Round 1 Results: Player 2 is in the lead!`)
+} else {
+  console.log(`Round 1 Results: It's a close draw!`)
+}
 
 
