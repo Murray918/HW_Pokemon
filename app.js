@@ -20,15 +20,15 @@ let pokemonCards = [
 ];
 
 
+
+let cardsInPlay = [];
 let playerOne = [];
 let playerTwo = [];
-let cardsInPlay = [];
-
 
 // Card Dealer
-while(playerOne.length<3 || playerTwo.length<3) {
-	playerOne.push(pokemonCards[Math.floor(Math.random() * pokemonCards.length)])
-	playerTwo.push(pokemonCards[Math.floor(Math.random() * pokemonCards.length)])
+  if(pokemonCards.length>=12) {
+	playerOne = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length));
+  playerTwo = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length));
 };
 
 
@@ -53,7 +53,7 @@ if(true) {
 console.log("Round 1!")
 console.log("Player One's Hand:", playerOne[0].name, playerOne[1].name, playerOne[2].name)
 console.log("Player Two's Hand:", playerTwo[0].name, playerTwo[1].name, playerTwo[2].name)
-console.log("Player One picked:", cardsInPlay[0])
+console.log("Player One picked:", "Damage:"+cardsInPlay[0])
 console.log("Player Two picked:", cardsInPlay[1].name+"!","Damage:"+cardsInPlay[1].damage)
 
 
@@ -61,7 +61,6 @@ console.log("Player Two picked:", cardsInPlay[1].name+"!","Damage:"+cardsInPlay[
 if(cardsInPlay[0]>cardsInPlay[1].damage) {
 	console.log("Player One Won this Turn!") 
 }	else console.log("Player Two Won this Turn!")
-
 
 
 
