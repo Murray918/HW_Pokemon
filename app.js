@@ -4,8 +4,8 @@ The Rules
 - There is a deck of 18 cards. Each card has a name value and a damage value. (This data will be supplied as an array of objects)
 - Each player is dealt three cards randomly from the deck into their hand.
 - Each player will choose to play a card from their hand:
-- The first player will choose whichever card in their hand has the highest damage value
-- The second player will choose a card at random
+  * The first player will choose whichever card in their hand has the highest damage value
+  * The second player will choose a card at random
 - The player whose card has the higher damage value wins the turn.
 - This will repeat for two more turns, until there are no more cards left in each player's hand.
 - When the players run out of cards in their hand, the round ends.
@@ -46,108 +46,94 @@ const pokemonArray = [
   { name: "Rattata", damage: 30 }, 
   { name: "Squirtle", damage: 60 },   //15
   { name: "Vulpix", damage: 50 }, 
-  { name: "Weedle",  damage: 40 }
+  { name: "Weedle",  damage: 40 }     //17
 ]
 
-
-
-class Player{
-	constructor(name)
-	{
+class Player {
+	constructor(name) {
 		this.name = name;  //store the name of the player
 		this.cards = [];   //new player has an empty hand of cards.
 		this.points = 0;   //new player should start with 0 points
-		this.showCard = {};
-		//this.cat = {dog: "dsfdsf", goat: "sdfdsf"};
-		//this.moose = [1,2,3,4];
+		this.showCard = {};  //Obj which contain the 1 card the player is going to play that round.
 	}
 	
-	currentPoints()
-	{
-		//return this.points;
-		//console.log("Points");
+	currentPoints() {
+		//track the player's current points
 		return this.points;
 	}
 	
-	addCards(cardsObject)
-	{
-		//console.log("Add Cards");
+	addCards(cardsObject) {
 		this.cards.push(cardsObject);
-		//console.log(this.cards);
 	}
 	
-	showHand()
-	{
-		//console.log("sdfsdf")
-		//console.log(this.cards);
-		//return this.cards;
-		if (this.cards.length === 0)
+	showHand() {
+		//this is to keep track of the players complete hand
+		//if the hand is empty return "Empty"
+		if (this.cards.length === 0) {
 			return "Empty"
-		else
+		} 
+		else {
 			return this.cards;
+		}
 	}
 }
 
-class globalFunctions extends Player{
-	constructor(name,player1,player2)
-	{
-		super(name)
-		//this.player1 = new player1(name1);
-		//this.player2 = new player2(name2);
-		this.round = 1.1;   //start round = 1
-		//this.cat = {dog: "dsfdsf", goat: "sdfdsf"};
-		//this.moose = [1,2,3,4];
+class globalFunctions extends Player {
+	constructor(name,player1,player2) 	{
+		super(name)  //sync "this" with the base class
+		
+		//Major Round is the whole number
+		//Minor Round is incremented by the float
+		this.round = 1.1;   //start round = 1.1
 	}
 
-	showRound()
-	{
+	//this variable will keep track of the rounds
+	showRound() {
 		return this.round;
 	}
 
-	incrementRound()
-	{
+	incrementRound() {
 		return this.round = this.round + 0.8;
 	}
-	incrementFight()
-	{
+	incrementFight() {
 		return this.round = this.round + 0.1;
 	}
 
-	selectCardsPlayer1() 
-	{
-		//player1 one takes highest card
+	selectCardsPlayer1() {
+		//player1 one picks highest card
 		let maxCard = 0;
 		let indexCard = 0;
-		let actorArray = player1.cards.filter(function (item, index) 
-		{
-		
-			if (item.damage >= maxCard)
-			{
+
+		//this will iterate over the elements in the array and then filter out
+		//individual elements based off the criteria below
+		let actorArray = player1.cards.filter(function (item, index) {
+			
+			//if I found a max damage card then replace the maxCard variable with the new card
+			if (item.damage >= maxCard) {
 				maxCard = item.damage;
 				indexCard = index;
 			}
-			return index;
+			return index;  //keep track of the index to splice out the highest damage card
 		});
-
-		//console.log(maxCard);
-		//console.log(indexCard);
 		
-		player1.showCard = player1.cards.splice(indexCard,1);  //got to remove the card from the player's deck!!!
+		//got to remove the card from the player's deck!!!
+		//this will mutate the original array!!!
+		player1.showCard = player1.cards.splice(indexCard,1);  
 		let justObj = player1.showCard[0];
 		player1.showCard = justObj;
 		
 		return justObj;
 	}
 
-	selectCardsPlayer2() 
-	{
+	selectCardsPlayer2() {
 		//player2 selects a random card
 		let cardsInDeck = player2.cards.length;  
-		//console.log(cardsInDeck);
-
-		//select a random number between 0 and Max Cards in Deck
+		
+		//select a random number between 0 and Max Cards in Player 2 deck
 		randCard = Math.floor(Math.random() * cardsInDeck);   
-		//console.log(randCard);
+
+		//need to remove the selected object from the array and return it
+		//must return just the object.  Do not return an array of objects.		
 		let arrObj = player2.cards.splice(randCard,1);
 		let justObj = arrObj[0];
 		player2.showCard = justObj;
@@ -155,89 +141,87 @@ class globalFunctions extends Player{
 		return justObj;
 	}
 
-	comparePlayerCards()
-	{
+	comparePlayerCards() {
 	
-
-		if(player1.showCard.damage > player2.showCard.damage)
-		{
-			//player 1 wins the hand.  Increment his win total
+		//Compare the cards damage value
+		if(player1.showCard.damage > player2.showCard.damage) {
+			//player 1 wins the hand.  Increment their win total
 			++player1.points;
-			console.log(`Player 1 ${player1.name} wins the battle!!!!`)
+			return `Player 1 ${player1.name} wins the battle!!!!`
 		}
-		else if (player1.showCard.damage < player2.showCard.damage)
-		{
+		else if (player1.showCard.damage < player2.showCard.damage)	{
+			//player 2 wins the hand.  Increment their win total
 			++player2.points;
-			console.log(`Player 2 ${player1.name} wins the battle!!!!`)
+			return `Player 2 ${player2.name} wins the battle!!!!`
 		}
-		else
-		{
+		else {
 			//increment no one since it was a tie
-			console.log("####Tie####")
+			return "####Tie####";
 		}
+	}
+	endGameWinner() {
+		//determine who won the game
 
-
+		if(player1.points > player2.points) {
+			//player 1 wins the Game
+			return `Player 1 ${player1.name} wins the game!!!!`;
+		}
+		else if (player1.points < player2.points)	{
+			//player 2 wins the Game
+			return `Player 2 ${player2.name} wins the game!!!!`;
+		}
+		else {
+			//Tie
+			return "A tie occurred.  Both players win!!!";
+		}
 	}
 }
 
-
-//assign random cards function
-function assignCards(playerObj)
-{
-	//get the current length of the array.  Remember, the array can shrink as cards are removed!!!
+//assign random cards function.  
+//I did this to show a function independent of a class.  
+function assignCards(playerObj) {
+	
+	//get the current length of the pokemonArray global array.  
+	//Remember, the array can shrink as cards are removed!!!
 	let cardsInDeck = pokemonArray.length;  
-	//console.log(cardsInDeck);
-
+	
 	//select a random number between 0 and Max Cards in deck
 	randCard = Math.floor(Math.random() * cardsInDeck);   
-	//console.log(randCard);
-
+	
 	//need to remove the selected object from the array and return it
 	//must return just the object.  Do not return an array of objects.
 	let arrObj = pokemonArray.splice(randCard,1);
-	let moo = arrObj[0];
-	playerObj.addCards(moo);
-	//playerObj.addCards(moo);
-	return arrObj[0];
+	let justObj = arrObj[0];
+	playerObj.addCards(justObj);
 	
+	return arrObj[0];
 }
 
-
-//create the 2 players 
+//create the two players each with a name
 let player1 = new Player("Chris");
 let player2 = new Player("Cassie");
 
+//create a global function to control the actions of the game.
 let globalFunc = new globalFunctions("who",player1,player2);
 
+
 console.log(`########### ${player1.name} (Player 1) vs ${player2.name} (Player 2) #############`);
+
+//start of the main do..while loop.  Will loop till the global pokemonArray array is out of cards!
 do {
 	console.log(`^^^^^^^^Selecting Starting Cards Round ${globalFunc.showRound().toFixed(1)} ^^^^^^^^^^^^^^^^`);
-	//assign them some cards
-	for (let i=0; i <=2; i++)
-	{
+	
+	//assign players each 3 cards
+	for (let i=0; i <=2; i++) {
 		assignCards(player1);
 		assignCards(player2);
 	}
 
-	//console.log("-------------------------------------------------------");
-	//console.log(player1.currentPoints());
-
-
-
-
-	//console.log(player1.showHand());
-	//console.log(player2.showHand());
-	//console.log(`Player 1 current points = ${player1.currentPoints()}`);
-	//console.log(`Player 2 current points = ${player2.currentPoints()}`);
-
-	//console.log(globalFunc.showRound());
-	//globalFunc.incrementRound();
-
-	
-	
-
-	//console.log(globalFunc.showRound());
 	console.log(`******** Round ${globalFunc.showRound().toFixed(1)} *********** Round ${globalFunc.showRound().toFixed(1)} ************ Round ${globalFunc.showRound().toFixed(1)} *************`);
+	console.log(`--------------------------Show Cards---------------------------`);
+	console.log(player1.showHand());
+	console.log(player2.showHand());
+	console.log("")
 	console.log(`------------------------Fight-------------------------`);
 	let player1Card = globalFunc.selectCardsPlayer1();
 	let player2Card = globalFunc.selectCardsPlayer2();
@@ -245,34 +229,29 @@ do {
 	console.log("        vs        ")
 	console.log(player2Card)
 	console.log("")
-	globalFunc.comparePlayerCards();
+	console.log (`${globalFunc.comparePlayerCards()}`);
+	console.log("")
 	console.log(`Player 1 (${player1.name}) current points = ${player1.currentPoints()}`);
 	console.log(`Player 2 (${player2.name}) current points = ${player2.currentPoints()}`);
 	console.log("")
 
-	console.log(`-----------------------Show Remaining Cards------------------------`);
-	console.log(player1.showHand());
-	console.log(player2.showHand());
 	console.log("")
 	globalFunc.incrementFight();
 
 	console.log(`******** Round ${globalFunc.showRound().toFixed(1)} *********** Round ${globalFunc.showRound().toFixed(1)} ************ Round ${globalFunc.showRound().toFixed(1)} *************`);
 	console.log(`------------------------Fight-------------------------`);
-	//console.log(globalFunc.showRound());
 	player1Card = globalFunc.selectCardsPlayer1();
 	player2Card = globalFunc.selectCardsPlayer2();
 	console.log(player1Card)
 	console.log("        vs        ")
 	console.log(player2Card)
 	console.log("")
-	globalFunc.comparePlayerCards();
+	console.log (`${globalFunc.comparePlayerCards()}`);
+	console.log("")
 	console.log(`Player 1 (${player1.name}) current points = ${player1.currentPoints()}`);
 	console.log(`Player 2 (${player2.name}) current points = ${player2.currentPoints()}`);
 	console.log("")
 
-	console.log(`-----------------------Show Remaining Cards------------------------`);
-	console.log(player1.showHand());
-	console.log(player2.showHand());
 	console.log("")
 	globalFunc.incrementFight();
 
@@ -284,45 +263,23 @@ do {
 	console.log("        vs        ")
 	console.log(player2Card)
 	console.log("")
-	globalFunc.comparePlayerCards();
+	console.log (`${globalFunc.comparePlayerCards()}`);
+	console.log("")
 	console.log(`Player 1 (${player1.name}) current points = ${player1.currentPoints()}`);
 	console.log(`Player 2 (${player2.name}) current points = ${player2.currentPoints()}`);
 	console.log("")
 
-	console.log(`-----------------------Show Remaining Cards------------------------`);
-	console.log(player1.showHand());
-	console.log(player2.showHand());
 	globalFunc.incrementRound();
 
 } while(pokemonArray.length >= 1)
 
+console.log("*********************************************************************************************")
+console.log("*********************************************************************************************")
+console.log("*********************************************************************************************")
+console.log("***********                                                                       ***********")
+console.log(`***********\t\t\t${globalFunc.endGameWinner()}\t\t\t\t\t\t\t***********`)
+console.log("***********                                                                       ***********")
+console.log("*********************************************************************************************")
+console.log("*********************************************************************************************")
+console.log("*********************************************************************************************")
 
-
-
-
-
-
-//console.log(card);
-//player1.addCards(card);
-//console.log(`Assign Card from deck ${card}`);
-
-
-//player1.addCards(player1);
-
-//let card = assignCards();
-//console.log(card);
-
-//Create the players using a class
-
-//player1.showHand;
-//player1.currentPoints;
-
-
-
-
-
-
-
-/*
-
-*/
