@@ -62,46 +62,46 @@ for (let i=0; i<3; i++) {
   // create empty array to hold the Pokemon card with the highest damage
   let highestCard= [];
 
-  
   // sort playerOne's deck from card with highest damage to lowest damage
   playerOne.hand.sort((a, b) => b.damage - a.damage);
-  console.log(playerOne.hand.sort((a, b) => b.damage - a.damage));
+  // console.log(playerOne.hand.sort((a, b) => b.damage - a.damage));
 
   //assign the card with the highest damage (first in sorted array) to the empty 'highestCard' variable
-  highestCard = playerOne.hand[0];
-  console.log(highestCard)
+  highestCard = playerOne.hand.splice(0, 1)[0];
+  // console.log(highestCard)
 
   // move playerOne's highest card into the battle stadium
   stadium.push(highestCard);
 
-
   // playerTwo picks card
-  let randomCard = playerTwo.hand.splice(Math.floor(Math.random() * playerTwo.hand.length), 1)[0]
+  let randomCard = playerTwo.hand.splice(Math.floor(Math.random() * playerTwo.hand.length), 1)[0];
 
   // move playerTwo's randomly picked card into the battle stadium
   stadium.push(randomCard);
 
   // console.log(stadium);
-  console.log(`${stadium[0].name} vs. ${stadium[1].name}`)
+  console.log(`${stadium[0].name} vs. ${stadium[1].name}`);
 
   //determine winner of turn
   if (stadium[0].damage > stadium[1].damage) {
-  console.log(`${stadium[0].name} beat ${stadium[1].name}. Player One wins!`)
-  playerOne.turnPoints ++
+      console.log(`${stadium[0].name} beat ${stadium[1].name}. Player One wins!`);
+      playerOne.turnPoints ++;
   } else if (stadium[1].damage > stadium[0].dmg) {
-  console.log(`${stadium[1].name} beat ${stadium[0].name}. Player Two wins!`)
-  playerTwo.turnPoints ++
+      console.log(`${stadium[1].name} beat ${stadium[0].name}. Player Two wins!`);
+      playerTwo.turnPoints ++;
   } else {
-  console.log(`It's a...DRAW!`)
+      console.log(`It's a...DRAW!`);
   }
-
-  // console.log who won the round
-  if (playerOne.turnPoints > playerTwo.turnPoints) {
-  console.log(`Round 1 Results: Player 1 is in the lead!`)
-  } else if (playerTwo.turnPoints > playerOne.turnPoints) {
-  console.log(`Round 1 Results: Player 2 is in the lead!`)
-  } else {
-  console.log(`Round 1 Results: It's a draw!`)
-  }
+  stadium.pop();
+  stadium.pop();
 
 }
+
+// console.log who won the round
+  if (playerOne.turnPoints > playerTwo.turnPoints) {
+      console.log(`Round 1 Results: Player 1 is in the lead!`);
+  } else if (playerTwo.turnPoints > playerOne.turnPoints) {
+      console.log(`Round 1 Results: Player 2 is in the lead!`);
+  } else {
+      console.log(`Round 1 Results: It's a draw!`);
+  }
