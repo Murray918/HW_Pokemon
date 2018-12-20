@@ -35,15 +35,20 @@ let game = {
   turn : 1,
   round: 1
 }
-
 while (game.turn<=9){
 
 
   // Card Dealer
-    if(playerOne.hand.length<3) {
+    if(game.round===1){
   	playerOne.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
+    playerTwo.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
   };
-    if (playerTwo.hand.length<3){
+    if(game.round===2){
+    playerOne.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
+    playerTwo.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
+  };
+    if(game.round===3){
+    playerOne.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
     playerTwo.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
   };
 
@@ -73,11 +78,19 @@ while (game.turn<=9){
 
   console.log("Round "+game.round+"!")
   console.log("Turn "+game.turn+"!")
+
+  if(game.turn===1) {
   console.log("Player One's Hand:", playerOne.hand[0].name, playerOne.hand[1].name, playerOne.hand[2].name)
   console.log("Player Two's Hand:", playerTwo.hand[0].name, playerTwo.hand[1].name, playerTwo.hand[2].name)
   console.log("Player One picked:", "Damage:"+cardsInPlay[0])
   console.log("Player Two picked:", cardsInPlay[1].name+"!","Damage:"+cardsInPlay[1].damage)
-
+  }
+    if(game.turn===2) {
+  console.log("Player One's Hand:", playerOne.hand[0].name, playerOne.hand[1].name, playerOne.hand[2].name)
+  console.log("Player Two's Hand:", playerTwo.hand[0].name, playerTwo.hand[1].name, playerTwo.hand[2].name)
+  console.log("Player One picked:", "Damage:"+cardsInPlay[0])
+  console.log("Player Two picked:", cardsInPlay[1].name+"!","Damage:"+cardsInPlay[1].damage)
+}
 
 
   //Round Winner
@@ -92,12 +105,13 @@ while (game.turn<=9){
     console.log("Player Two Won this Turn!");
   };
 
+
+
 game.turn++
-
-
 };
-//console.log(playerOne.points)
+//console.log(playerOne.hand)
 //console.log(playerTwo.points)
+
 
 
  
