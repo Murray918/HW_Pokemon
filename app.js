@@ -86,7 +86,7 @@ for (let i=0; i<3; i++) {
   if (stadium[0].damage > stadium[1].damage) {
       console.log(`${stadium[0].name} beat ${stadium[1].name}. Player One wins!`);
       playerOne.turnPoints ++;
-  } else if (stadium[1].damage > stadium[0].dmg) {
+  } else if (stadium[1].damage > stadium[0].damage) {
       console.log(`${stadium[1].name} beat ${stadium[0].name}. Player Two wins!`);
       playerTwo.turnPoints ++;
   } else {
@@ -96,7 +96,7 @@ for (let i=0; i<3; i++) {
   stadium.pop();
 
 }
-
+console.log(playerOne.hand, playerTwo.hand);
 // console.log who won the round
   if (playerOne.turnPoints > playerTwo.turnPoints) {
       console.log(`Round 1 Results: Player 1 is in the lead!`);
