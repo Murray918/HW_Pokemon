@@ -143,7 +143,7 @@ while(shuffledCards.length>0)
             console.log(`\n********************Round********************\n**********************${roundNumber}**********************\n`)
             roundDisplay++
         } else {
-            console.log(`\n*********************************************`)
+            console.log(`\n*********************************************\n`)
         }
         console.log("Player One plays "+player1Card.name+"!")
         console.log("Player Two plays "+player2Card.name+"!")
