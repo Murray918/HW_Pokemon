@@ -2,7 +2,7 @@
 ----------------------------------------------------------------------------------------------------------
 Name: War Card Game
 Author: Jacob Werbin
-Modified: 12/19/2018
+Modified: 12/20/2018
 Description: Basic War game played out automatically between two "AI" players; functions similarly to
 the classic War card game in which whoever has the higher card value wins the round. The game will play out
 until there are no more cards left within the deck. Whoever wins more rounds wins the game.
