@@ -124,7 +124,30 @@ for (let i=0; i<3; i++) {
   playerOne.turnPoints = 0;
   playerTwo.turnPoints = 0;
 }
-let champion = playerOne.roundsWon > playerTwo.roundsWon ? "PLAYER ONE IS THE CHAMPION!" : "PLAYER TWO IS THE CHAMPION!";
+
+// console.log who won the game
+let winnerOne = `Player ONE IS THE CHAMPION!`;
+let winnerTwo = `PLAYER TWO IS THE CHAMPION!`;
+let noWinner = `********IT'S A DRAW********`;
+let champion = ``;
+
+  if (playerOne.roundsWon > playerTwo.roundsWon) {
+      champion = winnerOne;
+      console.log(".");
+      console.log(".");
+      console.log(".");
+  } else if (playerTwo.roundsWon > playerOne.roundsWon) {
+      champion = winnerTwo;
+      console.log(".");
+      console.log(".");
+      console.log(".");
+  } else {
+      champion = noWinner;
+      console.log(".");
+      console.log(".");
+      console.log(".");
+  }
 console.log("***************************************************");
 console.log(`************${champion}************`);
 console.log("***************************************************");
+
