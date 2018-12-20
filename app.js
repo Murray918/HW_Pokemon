@@ -48,8 +48,8 @@ let randomCard = function (x) {
     
     // Card Dealer
     while(playerOne.hand.length<3&&playerTwo.hand.length<3){
-    playerOne.hand = pokemonCards.splice(randomCard(pokemonCards.length), 9);
-    playerTwo.hand = pokemonCards.splice(randomCard(pokemonCards.length), 9);
+    playerOne.hand = pokemonCards.splice(randomCard(pokemonCards.length), 3);
+    playerTwo.hand = pokemonCards.splice(randomCard(pokemonCards.length), 3);
     }; 
 
 
@@ -91,8 +91,10 @@ if(game.turn===4){game.round++};
 if(game.turn===7){game.round++};
 
 game.turn++
-
+console.log("Player ONE:",playerOne.points)
+console.log("Player TWO:",playerTwo.points)
 };
+
 
 
 //console.log(playerOne.hand)
