@@ -19,106 +19,83 @@ let pokemonCards = [
   { name: "Weedle",  damage: 40 }
 ];
 
-
 let playerOne = {
   hand: [],
-  points: 0
+  points: 0,
+  cardsInPlay: []
+
 };
 let playerTwo = {
   hand: [],
-  points: 0
+  points: 0,
+  cardsInPlay: []
 };
-let cardsInPlay = [];
 
 //Turns and Rounds
 let game = {
   turn : 1,
   round: 1
-}
-while (game.turn<=9){
+};
 
-
-  // Card Dealer
-    if(game.round===1){
-  	playerOne.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
-    playerTwo.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
-  };
-    if(game.round===2){
-    playerOne.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
-    playerTwo.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
-  };
-    if(game.round===3){
-    playerOne.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
-    playerTwo.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
-  };
-
-
-  // Player 1 Card Pick
-  let playerOneDmg = [];
-
-  for(let i=0; i<playerOne.hand.length; i++) {
-  	playerOneDmg.push(playerOne.hand[i].damage)
-  };
-  cardsInPlay.push(Math.max(...playerOneDmg))
+let randomCard = function (x) {
+  return Math.floor(Math.random() * x)
+};
 
 
 
-  //Player 2 Card Pick
-  if(true) {
-  	cardsInPlay.push(playerTwo.hand[Math.floor(Math.random() * playerTwo.hand.length)]);
-  };	
+  while (game.turn<=9){
+
+    
+    // Card Dealer
+    while(playerOne.hand.length<3&&playerTwo.hand.length<3){
+    playerOne.hand = pokemonCards.splice(randomCard(pokemonCards.length), 9);
+    playerTwo.hand = pokemonCards.splice(randomCard(pokemonCards.length), 9);
+    }; 
 
 
 
-  //Console Log The Game
-  if (game.turn===3)
-  game.round++
-  else if (game.turn===6)
-  game.round++
-
-  console.log("Round "+game.round+"!")
-  console.log("Turn "+game.turn+"!")
-
-  if(game.turn===1) {
-  console.log("Player One's Hand:", playerOne.hand[0].name, playerOne.hand[1].name, playerOne.hand[2].name)
-  console.log("Player Two's Hand:", playerTwo.hand[0].name, playerTwo.hand[1].name, playerTwo.hand[2].name)
-  console.log("Player One picked:", "Damage:"+cardsInPlay[0])
-  console.log("Player Two picked:", cardsInPlay[1].name+"!","Damage:"+cardsInPlay[1].damage)
-  }
-    if(game.turn===2) {
-  console.log("Player One's Hand:", playerOne.hand[0].name, playerOne.hand[1].name, playerOne.hand[2].name)
-  console.log("Player Two's Hand:", playerTwo.hand[0].name, playerTwo.hand[1].name, playerTwo.hand[2].name)
-  console.log("Player One picked:", "Damage:"+cardsInPlay[0])
-  console.log("Player Two picked:", cardsInPlay[1].name+"!","Damage:"+cardsInPlay[1].damage)
-}
+    // Player 1 Card Pick
+    if(playerOne.cardsInPlay.length<3) {
+    playerOne.cardsInPlay = playerOne.hand.splice([randomCard(playerOne.cardsInPlay.length)], 1);
+    }
+    // Player 2 Card Pick
+    if(playerTwo.cardsInPlay.length<3) {
+    playerTwo.cardsInPlay = playerTwo.hand.splice([randomCard(playerTwo.cardsInPlay.length)], 1);
+    };
 
 
-  //Round Winner
-  if(cardsInPlay[0]===cardsInPlay[1].damage){
-    console.log("It's a Tie!");
-  }else if(cardsInPlay[0]>cardsInPlay[1].damage) {
-    playerOne.points += 1,
-    console.log("Player One Won this Turn!"); 
-  }
-  else if (cardsInPlay[0]<cardsInPlay[1].damage) {
-    playerTwo.points += 1,
-    console.log("Player Two Won this Turn!");
-  };
+    //Console Log The Game
+    console.log("--------------------Round "+game.round+"!--------------------")
+    console.log("          -----------Turn "+game.turn+"!-----------")
+    console.log("Player One's Hand:", playerOne.hand)
+    console.log("Player Two's Hand:", playerTwo.hand)
+    console.log("Player One picked:", playerOne.cardsInPlay[0])
+    console.log("Player Two picked:", playerTwo.cardsInPlay[0])
+    
 
 
+    //Round Winner
+    if(playerOne.cardsInPlay[0].damage===playerTwo.cardsInPlay[0].damage){
+      console.log("It's a Tie!");
+    }
+    else if(playerOne.cardsInPlay[0].damage>playerTwo.cardsInPlay[0].damage) {
+      playerOne.points += 1,
+      console.log("Player One Won this Turn!"); 
+    }
+    else if (playerOne.cardsInPlay[0].damage<playerTwo.cardsInPlay[0].damage) {
+      playerTwo.points += 1,
+      console.log("Player Two Won this Turn!");
+    };
+
+if(game.turn===4){game.round++};
+if(game.turn===7){game.round++};
 
 game.turn++
+
 };
+
+
 //console.log(playerOne.hand)
-//console.log(playerTwo.points)
-
-
-
- 
-
-
-
-
-
-
-
+//console.log(playerTwo.hand)
+//console.log(playerOne.cardsInPlay)
+//console.log(playerTwo.cardsInPlay)
