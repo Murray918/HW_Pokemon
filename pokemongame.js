@@ -1,3 +1,4 @@
+// deck that player's cards will be pulled from 
 let deck = [
   { name: "Bulbasaur", damage: 60 }, 
   { name: "Caterpie", damage: 40 }, 
@@ -35,24 +36,30 @@ let playerTwo = {
 // arena to house each players' card currently being played
 let arena = []
 
+// Loops that encompass rounds 1-3
+for (let i = 0; i < 3; i++){
+
 // console.log the round number
-console.log("Round 1, Start!")
+console.log("##############")
+console.log("Round " + (i+1) + " Start!")
+console.log("##############")
+console.log(" ")
 
-
-// console.log the players hand
-// for loop to randomize the cards in the deck, and splice 3 cards into player one's hand
+// a for loop to randomize the cards in the deck, and splice 3 cards into player one's hand
 for (let i = 0; i <= 2; i++){
 	playerOne.hand.push(deck.splice(Math.floor(Math.random() * deck.length), 1)[0]);
 }
-// edit output of console.log so that console provides which cards were drawn, rather than [object Objects]
+// console log that shares the names of the cards in player one's hand
 console.log(`Player One drew ${playerOne.hand[0].name}, ${playerOne.hand[1].name}, ${playerOne.hand[2].name}!`)
+
 // for loop to randomize the cards in the deck, and splice 3 cards into player two's hand
 for (let i = 0; i <= 2; i++){
 	playerTwo.hand.push(deck.splice(Math.floor(Math.random() * deck.length), 1)[0]);
 }
 
-// output for the hand that player two drew
+// console log that shares the names of the cards in player two's hand
 console.log(`Player Two drew ${playerTwo.hand[0].name}, ${playerTwo.hand[1].name}, ${playerTwo.hand[2].name}!`)
+console.log(" ")
 
 // this is where turns 1-3 loop
 for (let i = 0; i <3; i++){
@@ -61,15 +68,15 @@ for (let i = 0; i <3; i++){
 	playerOne.hand.sort(function compareNumbers(a, b){
 	                   return b.damage - a.damage
 	               });
-	let highestCard = playerOne.hand[0];
+	// put a card from player one's hand into the arena for play
 	arena.push(playerOne.hand.splice(0,1)[0])
 
 	// // used to randomly push a card from player two's hand into the arena
 	arena.push(playerTwo.hand.splice(Math.floor(Math.random() * playerTwo.hand.length), 1)[0]);
-	// //	console.log the chosen card	
 		 
 	// who played which cards
-	console.log(arena[0].name + " vs. " + arena[1].name);
+	console.log("~~~~~~~~~~~~~~~~~~~")
+		console.log(arena[0].name + " vs. " + arena[1].name);
 
 	// 	console.log who won the turn
 	if (arena[0].damage < arena[1].damage){
@@ -81,22 +88,31 @@ for (let i = 0; i <3; i++){
 		playerTwo.turnPoints += 1
 	}
 	else console.log("Equal Damage! A DRAW!")
+	console.log("~~~~~~~~~~~~~~~~~~~")
 	arena.pop()
 	arena.pop()
 }
+// who won the round
 	if (playerOne.turnPoints < playerTwo.turnPoints){
-		console.log("Round 1 belongs to Player Two!")
+		console.log("")
+		console.log("Round " + (i+1) +" belongs to Player Two!")
+		console.log("")
 		playerOne.roundsWon += 1
 	}
 	else if (playerOne.turnPoints > playerTwo.turnPoints){ 
-		console.log("Round 1 belongs to Player One!")
+		console.log("Round " + (i+1) +" belongs to Player One!")
 		playerTwo.roundsWon += 1
+		console.log("")
 	}
-	else console.log("Equal Damage! A DRAW!")
+	else console.log("A DRAW!?")
 	playerOne.turnPoints = 0
-	playerTwo.turnPoints = 0
-	// Use this to announce the winner of the round
-	// if (playerOne.turnPoints > playerTwo.turnPoints){
-	// 	console.log("The winner of Round 1 is Player One!")}
+	playerTwo.turnPoints = 0}
+	console.log("")
+	if (playerOne.roundsWon < playerTwo.roundsWon){
+		console.log("Player Two wins the tournament!!")
+	}
+	// who won the tournament
+	else if (playerOne.roundsWon > playerTwo.roundsWon){ 
+		console.log("Player One wins the tournament!!")
 
-	// // 		console.log who won the round
+	}
