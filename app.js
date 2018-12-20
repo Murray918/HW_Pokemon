@@ -33,8 +33,8 @@ function shuffleArray(poke) {
 shuffleArray(poke) // here I am running the shuffle function
 
 
-let PlayerAhand1 = []
-let PlayerBhand1 = []
+let Player1hand = []
+let Player2hand = []
 
 let cardDistribute = function (playerhand) {
 
@@ -45,11 +45,11 @@ let cardDistribute = function (playerhand) {
   poke.splice([random],1)
   
   }
-
+// function to get a card to play
   let player2cardplay = function () {
-    let cardsIndeck = PlayerBhand1.length
+    let cardsIndeck = Player2hand.length
     Player2randomCard = Math.floor(Math.random()* cardsIndeck)
-    player2Card = PlayerBhand1.splice(Player2randomCard,1)
+    player2Card = Player2hand.splice(Player2randomCard,1)
 
   }
 let player2Card = []
@@ -61,20 +61,20 @@ let player1playcard = []
 let selectCardplayer1 = function () {
   let maxVal = 0
   let index = 0
-  for (let i =0; i < PlayerAhand1.length; i++) {
-    if(PlayerAhand1[i].damage > maxVal) {
-      maxVal = PlayerAhand1[i].damage
+  for (let i =0; i < Player1hand.length; i++) {
+    if(Player1hand[i].damage > maxVal) {
+      maxVal = Player1hand[i].damage
       index = i
     }
    
 
   }
 
-  player1playcard = PlayerAhand1.splice(index,1)
+  player1playcard = Player1hand.splice(index,1)
 
 }
 
-shuffleArray(PlayerBhand1)
+shuffleArray(Player2hand)
 
 p1Turnwins = 0
 p2Turnwins = 0
@@ -85,12 +85,12 @@ let playgame = function(p1deck,p2deck) {
       
 
        if( p1deck[0].damage > p2deck[0].damage){
-      ++p1Turnwins
+      p1Turnwins++
       console.log("Player 1 has won the turn using " + p1deck[0].name + "!" )
       console.log("Player 2 has lost the turn using " + p2deck[0].name + "!")
     }
   else if ( p1deck[0].damage < p2deck[0].damage)
-    { ++p2Turnwins
+    { p2Turnwins++
     console.log("Player 2 has won the turn using " + p2deck[0].name + "!")
     console.log("Player 1 has lost the turn using " + p1deck[0].name + "!")
     }
@@ -100,39 +100,41 @@ let playgame = function(p1deck,p2deck) {
   }
 }
 
-let roundCounter = function() {
-  if(p1Turnwins > p2Turnwins){
-    (p1Roundwins+ 1)
+let roundCounter = function(turnwinsplayer1,turnwinsplayer2) {
+  if(turnwinsplayer1 > turnwinsplayer2){
+    (p1Roundwins++ )
   }
-  else if (p1Turnwins < p2Turnwins){
-    (p2Roundwins + 1)
+  else if (turnwinsplayer1 < turnwinsplayer2){
+    (p2Roundwins++ )
   }
 }
 /// Once I'm finished run this loop for the game
 while (poke.length >= 1) {
 
-
+for (i = 0; i<3; i++){
 // }
 /// Dealing 3 cards to each player
 for (let i = 0; i <3; i++){
-  cardDistribute(PlayerAhand1)
-  cardDistribute(PlayerBhand1)
-}
+  cardDistribute(Player1hand)
+  cardDistribute(Player2hand)
+
 
 selectCardplayer1()
 
-shuffleArray(PlayerBhand1)
+shuffleArray(Player2hand)
 
 player2cardplay()
 
 playgame(player1playcard,player2Card)
 
-console.log(p1Turnwins)
 
+console.log(p1Turnwins)
 console.log(p2Turnwins)
 
-roundCounter()
+}
 
+
+roundCounter(p1Turnwins,p2Turnwins)
 console.log(p1Roundwins)
 console.log(p2Roundwins)
-}
+}}
