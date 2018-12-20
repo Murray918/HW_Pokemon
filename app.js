@@ -121,7 +121,8 @@ for (let i=0; i<3; i++) {
       console.log(".");
       console.log(".");
   }
-
+  playerOne.turnPoints = 0;
+  playerTwo.turnPoints = 0;
 }
 let champion = playerOne.roundsWon > playerTwo.roundsWon ? "PLAYER ONE IS THE CHAMPION!" : "PLAYER TWO IS THE CHAMPION!";
 console.log("***************************************************");
