@@ -30,57 +30,74 @@ let playerTwo = {
 };
 let cardsInPlay = [];
 
-
-// Card Dealer
-  if(playerOne.hand.length<3) {
-	playerOne.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
-};
-  if (playerTwo.hand.length<3){
-  playerTwo.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
-};
-
-
-// Player 1 Card Pick
-let playerOneDmg = [];
-
-for(let i=0; i<playerOne.hand.length; i++) {
-	playerOneDmg.push(playerOne.hand[i].damage)
-};
-cardsInPlay.push(Math.max(...playerOneDmg))
-
-
-
-//Player 2 Card Pick
-if(true) {
-	cardsInPlay.push(playerTwo.hand[Math.floor(Math.random() * playerTwo.hand.length)]);
-};	
-
-
-
-//Console Log The Game
-
-console.log("Round 1!")
-console.log("Player One's Hand:", playerOne.hand[0].name, playerOne.hand[1].name, playerOne.hand[2].name)
-console.log("Player Two's Hand:", playerTwo.hand[0].name, playerTwo.hand[1].name, playerTwo.hand[2].name)
-console.log("Player One picked:", "Damage:"+cardsInPlay[0])
-console.log("Player Two picked:", cardsInPlay[1].name+"!","Damage:"+cardsInPlay[1].damage)
-
-
-
-//Round Winner
-if(cardsInPlay[0]===cardsInPlay[1].damage){
-  console.log("It's a Tie!");
-}else if(cardsInPlay[0]>cardsInPlay[1].damage) {
-  playerOne.points += 1,
-  console.log("Player One Won this Turn!"); 
+//Turns and Rounds
+let game = {
+  turn : 1,
+  round: 1
 }
-else if (cardsInPlay[0]<cardsInPlay[1].damage) {
-  playerTwo.points += 1,
-  console.log("Player Two Won this Turn!");
-};
 
-console.log(playerOne.points)
-console.log(playerTwo.points)
+while (game.turn<=9){
+
+
+  // Card Dealer
+    if(playerOne.hand.length<3) {
+  	playerOne.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
+  };
+    if (playerTwo.hand.length<3){
+    playerTwo.hand = pokemonCards.splice(Math.floor(Math.random() * pokemonCards.length), 3);
+  };
+
+
+  // Player 1 Card Pick
+  let playerOneDmg = [];
+
+  for(let i=0; i<playerOne.hand.length; i++) {
+  	playerOneDmg.push(playerOne.hand[i].damage)
+  };
+  cardsInPlay.push(Math.max(...playerOneDmg))
+
+
+
+  //Player 2 Card Pick
+  if(true) {
+  	cardsInPlay.push(playerTwo.hand[Math.floor(Math.random() * playerTwo.hand.length)]);
+  };	
+
+
+
+  //Console Log The Game
+  if (game.turn===3)
+  game.round++
+  else if (game.turn===6)
+  game.round++
+
+  console.log("Round "+game.round+"!")
+  console.log("Turn "+game.turn+"!")
+  console.log("Player One's Hand:", playerOne.hand[0].name, playerOne.hand[1].name, playerOne.hand[2].name)
+  console.log("Player Two's Hand:", playerTwo.hand[0].name, playerTwo.hand[1].name, playerTwo.hand[2].name)
+  console.log("Player One picked:", "Damage:"+cardsInPlay[0])
+  console.log("Player Two picked:", cardsInPlay[1].name+"!","Damage:"+cardsInPlay[1].damage)
+
+
+
+  //Round Winner
+  if(cardsInPlay[0]===cardsInPlay[1].damage){
+    console.log("It's a Tie!");
+  }else if(cardsInPlay[0]>cardsInPlay[1].damage) {
+    playerOne.points += 1,
+    console.log("Player One Won this Turn!"); 
+  }
+  else if (cardsInPlay[0]<cardsInPlay[1].damage) {
+    playerTwo.points += 1,
+    console.log("Player Two Won this Turn!");
+  };
+
+game.turn++
+
+
+};
+//console.log(playerOne.points)
+//console.log(playerTwo.points)
 
 
  
