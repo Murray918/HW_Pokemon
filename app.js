@@ -36,13 +36,16 @@ let playerOne = new Contestant("Ash");
 
 let playerTwo = new Contestant("Gary");
 
-//create stadium to hold two players' card being played against each other
+// create stadium to hold two players' card being played against each other
 let stadium = [];
 
 
-
-//code for one round
-console.log(`Round 1 Start!`);
+// create for loop to loop through roundsWon
+for (let i=0; i<=2; i++) {
+// code for one round
+console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+console.log(`          Round ${i+1} Start!`);
+console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 // Remove random card from deck array and push it into playerOne.hand array
 for (let i = 0; i <= 2; i++) {
@@ -58,7 +61,7 @@ console.log(`Player Two drew ${playerTwo.hand[0].name}, ${playerTwo.hand[1].name
 
 // code for one turn
 for (let i=0; i<3; i++) {
-  console.log(`Turn ${i+1}:`)
+  console.log(`~~~~~~~~~~~~~~Turn ${i+1}~~~~~~~~~~~~~~`);
   // playerOne picks card
   // create empty array to hold the Pokemon card with the highest damage
   let highestCard= [];
@@ -98,12 +101,29 @@ for (let i=0; i<3; i++) {
   stadium.pop();
 
 }
-console.log(playerOne.hand, playerTwo.hand);
+
 // console.log who won the round
   if (playerOne.turnPoints > playerTwo.turnPoints) {
-      console.log(`Round 1 Results: Player 1 is in the lead!`);
+      console.log(`Round ${i+1} Winner: Player 1`);
+      console.log(".");
+      console.log(".");
+      console.log(".");
+      playerOne.roundsWon ++;
   } else if (playerTwo.turnPoints > playerOne.turnPoints) {
-      console.log(`Round 1 Results: Player 2 is in the lead!`);
+      console.log(`Round ${i+1} Winner: Player 2`);
+      console.log(".");
+      console.log(".");
+      console.log(".");
+      playerTwo.roundsWon ++;
   } else {
-      console.log(`Round 1 Results: It's a draw!`);
+      console.log(`Round ${i+1} Winner: It's a draw!`);
+      console.log(".");
+      console.log(".");
+      console.log(".");
   }
+
+}
+let champion = playerOne.roundsWon > playerTwo.roundsWon ? "PLAYER ONE IS THE CHAMPION!" : "PLAYER TWO IS THE CHAMPION!";
+console.log("***************************************************");
+console.log(`************${champion}************`);
+console.log("***************************************************");
