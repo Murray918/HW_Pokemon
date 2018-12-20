@@ -56,11 +56,8 @@ if(true) {
 };	
 
 
-//Who wins a Point
 
-
-
-//Console Log Game
+//Console Log The Game
 
 console.log("Round 1!")
 console.log("Player One's Hand:", playerOne.hand[0].name, playerOne.hand[1].name, playerOne.hand[2].name)
@@ -68,17 +65,29 @@ console.log("Player Two's Hand:", playerTwo.hand[0].name, playerTwo.hand[1].name
 console.log("Player One picked:", "Damage:"+cardsInPlay[0])
 console.log("Player Two picked:", cardsInPlay[1].name+"!","Damage:"+cardsInPlay[1].damage)
 
-//console.log(playerOne)
-//console.log(playerTwo)
 
 
 //Round Winner
 if(cardsInPlay[0]===cardsInPlay[1].damage){
-  console.log("It's a Tie!")
+  console.log("It's a Tie!");
 }else if(cardsInPlay[0]>cardsInPlay[1].damage) {
-  console.log("Player One Won this Turn!") 
+  playerOne.points += 1,
+  console.log("Player One Won this Turn!"); 
 }
-else console.log("Player Two Won this Turn!")
+else if (cardsInPlay[0]<cardsInPlay[1].damage) {
+  playerTwo.points += 1,
+  console.log("Player Two Won this Turn!");
+};
+
+console.log(playerOne.points)
+console.log(playerTwo.points)
 
 
-//console.log(playerOne.hand)
+ 
+
+
+
+
+
+
+
