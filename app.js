@@ -22,19 +22,19 @@ let deck = [
 ]
 
 //create objects for each player
-let playerOne = {
-	name: "Ash",
-  hand: [],
-	turnPoints: 0,
-  roundsWon: 0
+
+class Contestant {
+  constructor(name,) {
+    this.name = name;
+    this.hand = [];
+    this.turnPoints = 0;
+    this.roundsWon = 0;
+  }
 }
 
-let playerTwo = {
-  name: "Gary",
-  hand: [],
-  turnPoints: 0,
-  roundsWon: 0
-}
+let playerOne = new Contestant("Ash");
+
+let playerTwo = new Contestant("Gary");
 
 //create stadium to hold two players' card being played against each other
 let stadium = [];
@@ -58,6 +58,7 @@ console.log(`Player Two drew ${playerTwo.hand[0].name}, ${playerTwo.hand[1].name
 
 // code for one turn
 for (let i=0; i<3; i++) {
+  console.log(`Turn ${i+1}:`)
   // playerOne picks card
   // create empty array to hold the Pokemon card with the highest damage
   let highestCard= [];
@@ -80,7 +81,8 @@ for (let i=0; i<3; i++) {
   stadium.push(randomCard);
 
   // console.log(stadium);
-  console.log(`${stadium[0].name} vs. ${stadium[1].name}`);
+  console.log(`Player One plays ${stadium[0].name}. Player Two plays ${stadium[1].name}.`);
+  console.log(`...`);
 
   //determine winner of turn
   if (stadium[0].damage > stadium[1].damage) {
