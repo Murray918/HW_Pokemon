@@ -36,8 +36,8 @@ let playerTwo = {
   roundsWon: 0
 }
 
-//create arena to hold two players' card being played against each other
-let arena = [];
+//create stadium to hold two players' card being played against each other
+let stadium = [];
 
 
 
@@ -57,48 +57,51 @@ for (let i = 0; i <= 2; i++) {
 console.log(`Player Two drew ${playerTwo.hand[0].name}, ${playerTwo.hand[1].name}, and ${playerTwo.hand[2].name}.`);
 
 // code for one turn
+for (let i=0; i<3; i++) {
+  // playerOne picks card
+  // create empty array to hold the Pokemon card with the highest damage
+  let highestCard= [];
 
-// play hands
+  
+  // sort playerOne's deck from card with highest damage to lowest damage
+  playerOne.hand.sort((a, b) => b.damage - a.damage);
+  console.log(playerOne.hand.sort((a, b) => b.damage - a.damage));
 
-// playerOne picks card
-let highestCard= [];
+  //assign the card with the highest damage (first in sorted array) to the empty 'highestCard' variable
+  highestCard = playerOne.hand[0];
+  console.log(highestCard)
 
-console.log(playerOne.hand.sort((a, b) => b.damage - a.damage));
-playerOne.hand.sort((a, b) => b.damage - a.damage);
-highestCard = playerOne.hand[0];
-console.log(highestCard)
-    
-arena.push(highestCard);
-
-
+  // move playerOne's highest card into the battle stadium
+  stadium.push(highestCard);
 
 
+  // playerTwo picks card
+  let randomCard = playerTwo.hand.splice(Math.floor(Math.random() * playerTwo.hand.length), 1)[0]
 
-// playerTwo picks card
-let randomCard = playerTwo.hand.splice(Math.floor(Math.random() * playerTwo.hand.length), 1)[0]
-arena.push(randomCard);
+  // move playerTwo's randomly picked card into the battle stadium
+  stadium.push(randomCard);
 
-// console.log(arena);
-console.log(`${arena[0].name} vs. ${arena[1].name}`)
+  // console.log(stadium);
+  console.log(`${stadium[0].name} vs. ${stadium[1].name}`)
 
-//determine winner of turn
-if (arena[0].damage > arena[1].damage) {
-console.log(`${arena[0].name} beat ${arena[1].name}. Player One wins!`)
-playerOne.turnPoints ++
-} else if (arena[1].damage > arena[0].dmg) {
-console.log(`${arena[1].name} beat ${arena[0].name}. Player Two wins!`)
-playerTwo.turnPoints ++
-} else {
-console.log(`It's a...DRAW!`)
+  //determine winner of turn
+  if (stadium[0].damage > stadium[1].damage) {
+  console.log(`${stadium[0].name} beat ${stadium[1].name}. Player One wins!`)
+  playerOne.turnPoints ++
+  } else if (stadium[1].damage > stadium[0].dmg) {
+  console.log(`${stadium[1].name} beat ${stadium[0].name}. Player Two wins!`)
+  playerTwo.turnPoints ++
+  } else {
+  console.log(`It's a...DRAW!`)
+  }
+
+  // console.log who won the round
+  if (playerOne.turnPoints > playerTwo.turnPoints) {
+  console.log(`Round 1 Results: Player 1 is in the lead!`)
+  } else if (playerTwo.turnPoints > playerOne.turnPoints) {
+  console.log(`Round 1 Results: Player 2 is in the lead!`)
+  } else {
+  console.log(`Round 1 Results: It's a draw!`)
+  }
+
 }
-
-// console.log who won the round
-if (playerOne.turnPoints > playerTwo.turnPoints) {
-console.log(`Round 1 Results: Player 1 is in the lead!`)
-} else if (playerTwo.turnPoints > playerOne.turnPoints) {
-console.log(`Round 1 Results: Player 2 is in the lead!`)
-} else {
-console.log(`Round 1 Results: It's a draw!`)
-}
-
-
