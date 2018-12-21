@@ -41,8 +41,10 @@ let randomCard = function() {
 //Automatically plays player1 highest damage card
 
 
-//return values 
+    //return values 
 
+let gameArena1 = []
+let gameArena2 = [] 
 
 
 let player1 = {
@@ -64,13 +66,8 @@ let player1 = {
           
         else(player1.cards[2].damage > player1.cards[1].damage && player1.cards[0].damage)
         return (player1.cards[2])*/
-    playRandom: function() {
-        Array.prototype.randomElement = function() {
-            // console.log(this[Math.floor(Math.random() * this.length)])
-            return this[Math.floor(Math.random() * this.length)]
-        }
-        let randomDraw = player1.cards.randomElement()
-
+      playHighestDamage: function() {
+        
 
     }
 
@@ -85,34 +82,35 @@ let player1 = {
 
 
 let player2 = {
-        name: "Player 2",
-        cards: [],
-        draw3Cards: function(deck) {
-            for (i = 0; i < 3; i++) {
-                let card = randomCard()
-                this.cards.push(card)
-
-            }
-        },
-        playRandom: function() {
-            
-            // Array.prototype.randomElement = function() {
-
-            //     console.log(player2.cards.indexOf(this [Math.floor(Math.random() * this.length)]))
-            //console.log(this.cards)
-            let randomCard = this.cards[Math.floor(Math.random() * this.cards.length)]
-            return randomCard
-
-
-
-
-        },
-         removePlayedCard: function(value) {
-            let index = this.cards.indexOf(value)
-             return this.cards.splice(index, 1)
-             }
+    name: "Player 2",
+    cards: [],
+    draw3Cards: function(deck) {
+        for (i = 0; i < 3; i++) {
+            let card = randomCard()
+            this.cards.push(card)
 
         }
+    },
+     
+       
+
+
+  
+}
+
+
+
+
+
+
+
+player1.draw3Cards();
+
+
+
+
+
+console.log(pokemonCards)
 
 
 
@@ -123,15 +121,10 @@ let player2 = {
 
 
 
-        player2.draw3Cards()
-        let player2sRandomCard = player2.playRandom()
-        console.log(player2.cards)
 
-        console.log(player2sRandomCard)
-        console.log(player2.cards.indexOf(player2sRandomCard))
 
-        player2.removePlayedCard(player2sRandomCard)
 
-        console.log(player2.cards)
 
-        
+
+
+
