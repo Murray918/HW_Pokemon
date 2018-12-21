@@ -65,20 +65,19 @@ let player1 = {
         else(player1.cards[2].damage > player1.cards[1].damage && player1.cards[0].damage)
         return (player1.cards[2])*/
     playRandom: function() {
-        Array.prototype.randomElement = function() {
-            // console.log(this[Math.floor(Math.random() * this.length)])
-            return this[Math.floor(Math.random() * this.length)]
+         let randomCard = this.cards[Math.floor(Math.random() * this.cards.length)]
+            return randomCard
+
+    },
+
+     removePlayedCard: function(value) {
+            let index = this.cards.indexOf(value)
+             return this.cards.splice(index, 1)
+             }
+
         }
-        let randomDraw = player1.cards.randomElement()
 
 
-    }
-
-    /*removePlayedCard: function(cardThatWasPlayed){
-        //do something with that
-
-    }*/
-}
 
 
 
@@ -115,23 +114,95 @@ let player2 = {
         }
 
 
+        let p1scoreboard = 0
+        let p2scoreboard = 0
 
 
 
+        let scoreCompare = function(){
+            
+            if(player1sRandomCard.damage > player2sRandomCard.damage)
+                //console.log("PLAYER 1 WINS")
+                p1scoreboard += 1
+            
+            else
+                (player2sRandomCard.damage > player1sRandomCard.damage)
+                console.log("PLAYER 2 WINS")
+                p2scoreboard += 1
+            
+        }
 
 
 
-
-
-        player2.draw3Cards()
+        let player1sRandomCard = player1.playRandom()
         let player2sRandomCard = player2.playRandom()
-        console.log(player2.cards)
-
-        console.log(player2sRandomCard)
-        console.log(player2.cards.indexOf(player2sRandomCard))
-
-        player2.removePlayedCard(player2sRandomCard)
-
-        console.log(player2.cards)
 
         
+let hash = "############################################################################################"
+        
+        let Round1 = function(){
+            
+            console.log("ROUND 1")
+            player1.draw3Cards()
+            console.log("Player 1 DREW \n ", player1.cards)
+            console.log(hash)
+            player2.draw3Cards()
+            console.log("Player 2 DREW \n ", player2.cards)
+            console.log(hash)
+            player1.playRandom()
+            console.log("Player 1 has played \n ", player1sRandomCard = player1.playRandom())
+            player2.playRandom()
+            console.log("Player 2 has played \n ", player2sRandomCard = player2.playRandom())
+
+            player1.removePlayedCard(player1sRandomCard)
+            player2.removePlayedCard(player2sRandomCard)
+            console.log(hash)
+            
+            console.log("Player 1 score:",p1scoreboard)
+            console.log("Player 2 score:",p2scoreboard)
+            console.log(hash)
+            console.log("Player 1 remaining cards \n", player1.cards)
+            console.log("PLayer 2 remaining cards \n", player2.cards)
+            console.log(hash)
+
+            //round 2
+
+            console.log("ROUND 2")
+            player1.playRandom()
+            console.log("Player 1 has played \n ", player1sRandomCard = player1.playRandom())
+            player1.removePlayedCard(player1sRandomCard)
+            player2.playRandom()
+            console.log("Player 2 has played \n ", player2sRandomCard = player2.playRandom())
+            player2.removePlayedCard(player2sRandomCard)
+            console.log(hash)
+           
+            console.log("Player 1 score:",p1scoreboard)
+            console.log("Player 2 score:",p2scoreboard)
+            console.log(hash)
+            console.log("Player 1 remaining cards \n", player1.cards)
+            console.log("PLayer 2 remaining cards \n", player2.cards)
+
+            //round 3
+            console.log("ROUND 3")
+            player1.playRandom()
+            console.log("Player 1 has played \n ", player1sRandomCard = player1.playRandom())
+            player1.removePlayedCard(player1sRandomCard)
+            player2.playRandom()
+            console.log("Player 2 has played \n ", player2sRandomCard = player2.playRandom())
+            player2.removePlayedCard(player2sRandomCard)
+            console.log(hash)
+           
+            console.log("Player 1 score:",p1scoreboard)
+            console.log("Player 2 score:",p2scoreboard)
+            console.log(hash)
+            console.log("Player 1 remaining cards \n", player1.cards)
+            console.log("PLayer 2 remaining cards \n", player2.cards)
+        }
+        // while loop - while players score is less than 3 keep playing
+
+        Round1()
+
+
+       
+
+       
