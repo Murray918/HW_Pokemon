@@ -49,8 +49,8 @@ let go = function (){
     
     // Card Dealer
     while(playerOne.hand.length<3&&playerTwo.hand.length<3){
-    playerOne.hand = pokemonCards.splice(randomCard(pokemonCards.length), 3);
-    playerTwo.hand = pokemonCards.splice(randomCard(pokemonCards.length), 3);
+    playerOne.hand.push(pokemonCards.splice(randomCard(pokemonCards.length), 1,)[0]);
+    playerTwo.hand.push(pokemonCards.splice(randomCard(pokemonCards.length), 1,)[0]);
     }; 
 
 
