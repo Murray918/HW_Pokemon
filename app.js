@@ -42,6 +42,7 @@ let randomCard = function (x) {
 };
 
 
+let go = function (){
 
   while (game.turn<=9){
 
@@ -87,15 +88,17 @@ let randomCard = function (x) {
       console.log("Player Two Won this Turn!");
     };
 
-if(game.turn===4){game.round++};
-if(game.turn===7){game.round++};
 
-game.turn++
-console.log("Player ONE:",playerOne.points)
-console.log("Player TWO:",playerTwo.points)
+    if(game.turn===4){game.round++};
+    if(game.turn===7){game.round++};
+
+    game.turn++
+    console.log("Player ONE:",playerOne.points)
+    console.log("Player TWO:",playerTwo.points)
+    //console.log(pokemonCards)
+  }
 };
-
-
+go()
 
 //console.log(playerOne.hand)
 //console.log(playerTwo.hand)
